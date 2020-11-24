@@ -53,7 +53,7 @@ def edit_files(paths):
 					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
     					
 				elif ("!" not in line and "os.environ" not in line and "%" not in line ):
-					`fout.write(line)
+					fout.write(line)
 		fout.close()
 		fin.close()
 
