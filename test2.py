@@ -37,7 +37,8 @@ def edit_files(paths):
 
 			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
 			lines = fin.readlines()
-			fout.write("import wget\n")	
+			fout.write("import wget\n")
+			fout.write("import Matplotlib\n")
 			for line in lines : 
 				if ("wget" in line):
 					url = line.split(" ")
