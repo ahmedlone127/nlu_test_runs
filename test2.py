@@ -19,11 +19,11 @@ def get_path(directory,extension):
 				list_of_path.append(os.path.join(root,file))
 	return list_of_path
 
-def get_last_path(directory,extension):
+def get_last_path(directory,extension,keyword):
 	list_of_path = []
 	for root,dirs,files in os.walk(directory):
 		for file in files:
-			if file.endswith(extension) and "done" in file :
+			if file.endswith(extension) and keyword in file :
 				list_of_path.append(os.path.join(root,file))
 	return list_of_path
 
@@ -71,6 +71,7 @@ def run_Files(paths):
 		result_name =path.replace(".done.txt","result.txt")
 		os.system(f"python3 '{path}' > '{result_name}'")
 
+	
 def check_For_Errors(paths):
 	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
@@ -98,7 +99,7 @@ paths_For_ipynb = get_path(path,".ipynb")
 make_Files(paths_For_ipynb)
 paths_For_txt = get_path(path,".txt")
 edit_files(paths_For_txt)   
-paths_of_Files_to_run = get_last_path(path,".txt")
+paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
-result_files = get_path("/app/src/new/result/",".txt")
+result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
