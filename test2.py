@@ -11,16 +11,16 @@ def findOccurrences(s, ch):
 
 def get_path(directory,extension):
 	list_of_path = []
-    for root,dirs,files in os.walk(directory):
-        for file in files:
-            if file.endswith(extension):
-                list_of_path.append(os.path.join(root,file))
+	for root,dirs,files in os.walk(directory):
+       		for file in files:
+            	if file.endswith(extension):
+                	list_of_path.append(os.path.join(root,file))
 	return list_of_path
 
 def get_last_path(directory,extension):
     list_of_path = []
     for root,dirs,files in os.walk(directory):
-        for file in files:
+		for file in files:
             if file.endswith(extension) and "done" in file :
                 list_of_path.append(os.path.join(root,file))
     return list_of_path
