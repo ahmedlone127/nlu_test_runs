@@ -1,6 +1,7 @@
 FROM centos:7
 
 WORKDIR   /app/src/new
+RUN mkdir /ouputs
 COPY test2.py .
 COPY test3.py .
 COPY broken.txt .
