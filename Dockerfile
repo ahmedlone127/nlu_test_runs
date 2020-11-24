@@ -1,9 +1,8 @@
 FROM centos:7
 
 WORKDIR   /app/src/new
-RUN mkdir /app/src/new/ouputs
+
 COPY test2.py .
-COPY test3.py .
 COPY broken.txt .
 # Install Java
 RUN yum update -y \
