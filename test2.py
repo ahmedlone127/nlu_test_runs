@@ -68,7 +68,7 @@ def edit_files(paths):
 
 def run_Files(paths):
 	try :
-		for path in paths[:5]:
+		for path in paths[-5:]:
 			result_name =path.replace(".done.txt","result.txt")
 			os.system(f"python3 '{path}' > '{result_name}'")
 	except Execption as e :
