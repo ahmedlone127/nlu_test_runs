@@ -96,7 +96,7 @@ def check_For_Errors(paths):
 paths_For_ipynb = get_path(path,".ipynb")	
 make_Files(paths_For_ipynb)
 paths_For_txt = get_path(path,".txt")
-	edit_files(paths_For_txt)   
+edit_files(paths_For_txt)   
 paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
