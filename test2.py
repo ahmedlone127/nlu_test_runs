@@ -75,7 +75,7 @@ def run_Files(paths):
 def check_For_Errors(paths):
 	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
-		fin = open(name, "r+", encoding = "utf-8")
+		fin = open(path, "r+", encoding = "utf-8")
 		lines = fin.readlines()
 		for line in lines:
 			print(line)
