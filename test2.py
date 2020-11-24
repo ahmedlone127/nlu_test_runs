@@ -67,14 +67,9 @@ def edit_files(paths):
 		fin.close()
 
 def run_Files(paths):
-	try :
-		for path in paths[-5:]:
-			result_name =path.replace(".done.txt","result.txt")
-			os.system(f"python3 '{path}' > '{result_name}'")
-	except Execption as e :
-		fout = open("erros.txt", "a+",encoding= "utf-8")
-		fout.write(f"{e} \n")
-		fout.close()
+	for path in paths[-5:]:
+		result_name =path.replace(".done.txt","result.txt")
+		os.system(f"python3 '{path}' > '{result_name}'")
 def check_For_Errors(paths):
 	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
@@ -101,7 +96,7 @@ def check_For_Errors(paths):
 paths_For_ipynb = get_path(path,".ipynb")	
 make_Files(paths_For_ipynb)
 paths_For_txt = get_path(path,".txt")
-edit_files(paths_For_txt)   
+	edit_files(paths_For_txt)   
 paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
