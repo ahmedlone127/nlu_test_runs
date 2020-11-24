@@ -12,18 +12,18 @@ def findOccurrences(s, ch):
 def get_path(directory,extension):
 	list_of_path = []
 	for root,dirs,files in os.walk(directory):
-       		for file in files:
-            	if file.endswith(extension):
-                	list_of_path.append(os.path.join(root,file))
+		for file in files:
+			if file.endswith(extension):
+				list_of_path.append(os.path.join(root,file))
 	return list_of_path
 
 def get_last_path(directory,extension):
-    list_of_path = []
-    for root,dirs,files in os.walk(directory):
+	list_of_path = []
+	for root,dirs,files in os.walk(directory):
 		for file in files:
-            if file.endswith(extension) and "done" in file :
-                list_of_path.append(os.path.join(root,file))
-    return list_of_path
+			if file.endswith(extension) and "done" in file :
+				list_of_path.append(os.path.join(root,file))
+	return list_of_path
 
 def make_Files(paths):
 	for path in paths :
@@ -32,57 +32,52 @@ def make_Files(paths):
 def edit_files(paths):
 
 	for name in paths:
-        if "done" not in name:
-    		fin = open(name, "r+", encoding = "utf-8")
+		if "done" not in name:
+			fin = open(name, "r+", encoding = "utf-8")
 
-    		#output file to write the result to
-    		fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
-    		lines = fin.readlines()
-    		fout.write("import wget\n")	
-    		for line in lines : 
-
-    			if ("wget" in line):
-
-                    url = line.split(" ")
-                    for adress in url :
-                        if "http" in adress :
-                            url = adress
-                            break
-                 
-                    fout.write(f"wget.download('{url}')\n")
+			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
+			lines = fin.readlines()
+			fout.write("import wget\n")	
+			for line in lines : 
+				if ("wget" in line):
+					url = line.split(" ")
+					for adress in url :
+						if "http" in adress :
+							url = adress
+							break
+					fout.write(f"wget.download('{url}')\n")
     				
-    			elif ("pd.read_csv" in line):
-    				LIST_ =findOccurrences(url,"/")
-    				name =url[LIST_[-1]:]
-    				fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
+				elif ("pd.read_csv" in line):
+					LIST_ =findOccurrences(url,"/")
+					name =url[LIST_[-1]:]
+					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
     					
-    			elif ("!" not in line and "os.environ" not in line and "%" not in line ):
-    				fout.write(line)
-        fout.close()
-        fin.close()
+				elif ("!" not in line and "os.environ" not in line and "%" not in line ):
+					`fout.write(line)
+		fout.close()
+		fin.close()
 
 def run_Files(paths):
-    for path in paths:
-        name = findOccurrences(path,"/")
-        result_name = f"/app/src/new/outputs{path[name[-1]:]}"
-        os.system(f"python3 '{path}' > '{result_name}'")
+	for path in paths:
+		name = findOccurrences(path,"/")
+		result_name = f"/app/src/new/outputs{path[name[-1]:]}"
+		os.system(f"python3 '{path}' > '{result_name}'")
 
 def check_For_Errors(paths):
-    fout = open("erros.txt", "w+",encoding= "utf-8")
-    for path in paths :
-        fin = open(name, "r+", encoding = "utf-8")
-            #output file to write the result to
-            lines = fin.readlines()
-            for line in lines:
-                if "Error" in line: 
-                    fout.write(f"name: {path} \n")
-                    fout.write(f"error: \n")
-                    for line in lines :
-                        fout.write(f"{line}\n")
-                    fout.write("-------------------------------------------------------------------------------------------------- \n")
-                    break
-        fin.close()
-    fout.close()
+	fout = open("erros.txt", "w+",encoding= "utf-8")
+	for path in paths :
+		fin = open(name, "r+", encoding = "utf-8")
+		lines = fin.readlines()
+		for line in lines:
+			if "Error" in line: 
+				fout.write(f"name: {path} \n")
+				fout.write(f"error: \n")
+				for line in lines :
+					fout.write(f"{line}\n")
+			fout.write("-------------------------------------------------------------------------------------------------- \n")
+			break
+		fin.close()
+	fout.close()
 
 #print(get_path("app/src/new/nlu/examples/colab/Component Examples/"))	
 paths_For_ipynb = get_path(path,".ipynb")	
