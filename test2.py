@@ -1,6 +1,8 @@
 import argparse
 import os
 import nbconvert
+from IPython import get_ipython
+
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
 args=parser.parse_args()
@@ -39,6 +41,7 @@ def edit_files(paths):
 			lines = fin.readlines()
 			fout.write("import wget\n")
 			fout.write("import Matplotlib\n")
+			fout.write("from IPython import get_ipython\n")
 			for line in lines : 
 				if ("wget" in line):
 					url = line.split(" ")
@@ -56,7 +59,9 @@ def edit_files(paths):
 				elif ("nlu.load(" in line ):
 					
 					fout.write(line.replace(")",",verbose = True)"))
-				elif ("!" not in line and "os.environ" not in line and "%" not in line ):
+				elif ("%"in line :)
+					fout.write("get_ipython().run_line_magic('matplotlib', 'inline')")
+				elif ("!" not in line and "os.environ" not in line ):
 					fout.write(line)
 		fout.close()
 		fin.close()
