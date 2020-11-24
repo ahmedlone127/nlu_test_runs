@@ -30,4 +30,4 @@ ENV PYSPARK_PYTHON=python3
 RUN pip install nbconvert
 RUN pip install wget
 RUN yum -y install nano
-CMD ["python3"], ["test2.py"],[-"f"],["app/src/new/nlu/examples/colab/Component Examples/"]]
+CMD ["python3"], ["test2.py"],[-"f"],["/app/src/new/nlu/examples/colab/Component Examples/"]]
