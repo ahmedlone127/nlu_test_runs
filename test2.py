@@ -82,7 +82,7 @@ def check_For_Errors(paths):
 		fin.close()
 	
 	fout.close()
-	fout.open("erros.txt","r+",encoding = "utf-8")
+	fout=open("erros.txt","r+",encoding = "utf-8")
 	lines = fout.readlines()
 	for line in lines:
 		print(line)
