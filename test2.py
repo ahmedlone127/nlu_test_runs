@@ -52,22 +52,26 @@ def edit_files(paths):
 					name =url[LIST_[-1]:]
 					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
     					
+				elif ("nlu.load(" in line ):
+					
+					fout.write(line.replace(")",",verbose = True)"))
 				elif ("!" not in line and "os.environ" not in line and "%" not in line ):
 					fout.write(line)
 		fout.close()
 		fin.close()
 
 def run_Files(paths):
-	for path in paths:
+	for path in paths[:1]:
 		result_name =path.replace(".done.txt","result.txt")
 		os.system(f"python3 '{path}' > '{result_name}'")
 
 def check_For_Errors(paths):
-	fout = open("erros.txt", "w+",encoding= "utf-8")
+	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
 		fin = open(name, "r+", encoding = "utf-8")
 		lines = fin.readlines()
 		for line in lines:
+			print(line)
 			if "Error" in line: 
 				fout.write(f"name: {path} \n")
 				fout.write(f"error: \n")
@@ -76,8 +80,13 @@ def check_For_Errors(paths):
 			fout.write("-------------------------------------------------------------------------------------------------- \n")
 			break
 		fin.close()
+	
 	fout.close()
-
+	fout.open("erros.txt","r+",encoding = "utf-8")
+	lines = fout.readlines()
+	for line in lines:
+		print(line)
+	fout.close()
 #print(get_path("app/src/new/nlu/examples/colab/Component Examples/"))	
 paths_For_ipynb = get_path(path,".ipynb")	
 make_Files(paths_For_ipynb)
