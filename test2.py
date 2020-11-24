@@ -59,8 +59,7 @@ def edit_files(paths):
 
 def run_Files(paths):
 	for path in paths:
-		name = findOccurrences(path,"/")
-		result_name = f"/app/src/new/outputs{path[name[-1]:]}"
+		result_name =path.replace(".done.txt","result.txt")
 		os.system(f"python3 '{path}' > '{result_name}'")
 
 def check_For_Errors(paths):
