@@ -59,7 +59,7 @@ def edit_files(paths):
 				elif ("nlu.load(" in line ):
 					
 					fout.write(line.replace(")",",verbose = True)"))
-				elif ("%"in line :)
+				elif ("%"in line):
 					fout.write("get_ipython().run_line_magic('matplotlib', 'inline')")
 				elif ("!" not in line and "os.environ" not in line ):
 					fout.write(line)
