@@ -29,5 +29,7 @@ RUN git clone https://github.com/JohnSnowLabs/nlu
 ENV PYSPARK_PYTHON=python3
 RUN pip install nbconvert
 RUN pip install wget
+RUN pip install matplotlib
+RUN pip install IPython
 RUN yum -y install nano
 CMD ["python3", "test2.py","-f","/app/src/new/nlu/examples/colab/Component Examples/"]
