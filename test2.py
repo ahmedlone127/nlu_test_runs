@@ -84,8 +84,8 @@ def check_For_Errors(paths):
 				fout.write(f"error: \n")
 				for line in lines :
 					fout.write(f"{line}\n")
-			fout.write("-------------------------------------------------------------------------------------------------- \n")
-			break
+				fout.write("-------------------------------------------------------------------------------------------------- \n")
+				break
 		fin.close()
 	
 	fout.close()
@@ -102,4 +102,5 @@ edit_files(paths_For_txt)
 paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
+print(resul_files)
 check_For_Errors(result_files)
