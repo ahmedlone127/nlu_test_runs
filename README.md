@@ -131,3 +131,5 @@ check_For_Errors(result_files)
   
    ```
  in the files line we use the get path function and pass the path we got as input and the extension .ipynb to get all the noteboks inisde the directory , after that we made python scripts from those notebooks useing make_Files . after that we caled the get_path function and pass the same path but with the .txt extension to get all the python scripts .then we edit the files and get the paths to the edited files ,pass that to run files and scan the output of the the run for erros 
+
+When running the script we pass in the path of the foler we want to scan for with the -f flag 
