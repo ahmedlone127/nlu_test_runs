@@ -59,8 +59,8 @@ def edit_files(paths):
 					tags = findOccurrences(line,")")
 					list__ = list(line)
 					list__[tags[0]] =",verbose = True)" 
-					fout.write("".join(list__))
-					print("".join(list__))
+					fout.write("".join(list__).encode("utf-8"))
+					print("".join(list__).encode("utf-8")
 				elif ("!" not in line and "os.environ" not in line and "%" not in line):
 					fout.write(line)
 		fout.close()
