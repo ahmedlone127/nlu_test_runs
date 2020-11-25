@@ -67,7 +67,7 @@ def edit_files(paths):
 		fin.close()
 
 def run_Files(paths):
-	for path in paths[-1]:
+	for path in paths[:5]:
 		result_name =path.replace(".done.txt","result.txt")
 		os.system(f"python3 '{path}' > '{result_name}'")
 def check_For_Errors(paths):
