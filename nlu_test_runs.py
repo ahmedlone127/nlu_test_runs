@@ -107,18 +107,18 @@ def run_Files(paths):
 			try :
 				os.system(f"python3 '{path}' > '{result_name}'")
 			except Exception as e:# if it fails write error to file 
-				fout = open("erros.txt", "a+",encoding= "utf-8")
+				fout = open("errors.txt", "a+",encoding= "utf-8")
 				fout.write(f"name : {path}")
 				fout.write(f"{e}\n")
 				fout.write("----------------------------------------------------------------------------------------------------------")
 				fout.close()
 def check_For_Errors(paths):
-	"""Checks whether the output contains any errors and saves erros to a file 
+	"""Checks whether the output contains any errors and saves errors to a file 
 	
 	Keyword arguments:
 	paths   -- path of files to check errors for 
 	"""
-	fout = open("erros.txt", "a+",encoding= "utf-8")
+	fout = open("errors.txt", "a+",encoding= "utf-8")
 	for path in paths :
 		fin = open(path, "r+", encoding = "utf-8")
 		lines = fin.readlines()
@@ -134,7 +134,7 @@ def check_For_Errors(paths):
 		fin.close()
 	
 	fout.close()
-	fout=open("erros.txt","r+",encoding = "utf-8")
+	fout=open("errors.txt","r+",encoding = "utf-8")
 	lines = fout.readlines()
 	for line in lines:
 		print(line)
