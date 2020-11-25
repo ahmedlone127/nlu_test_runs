@@ -2,7 +2,7 @@ import argparse
 import os
 import nbconvert
 
-
+# getting arguments 
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
 args=parser.parse_args()
@@ -28,7 +28,7 @@ def get_path(directory,extension):
 	for root,dirs,files in os.walk(directory):
 		for file in files:
 			if file.endswith(extension):
-				list_of_path.append(os.path.join(root,file))
+				list_of_path.append(os.path.join(root,file))# join root and file to form a complete path 
 	return list_of_path
 
 def get_last_path(directory,extension,keyword):
@@ -43,7 +43,7 @@ def get_last_path(directory,extension,keyword):
 	for root,dirs,files in os.walk(directory):
 		for file in files:
 			if file.endswith(extension) and keyword in file :
-				list_of_path.append(os.path.join(root,file))
+				list_of_path.append(os.path.join(root,file))# join root and file to form a complete path
 	return list_of_path
 
 def make_Files(paths):
@@ -71,7 +71,7 @@ def edit_files(paths):
 			fout.write("import wget\n")
 			fout.write("from IPython import get_ipython\n")
 			for line in lines : 
-				if ("wget" in line):
+				if ("wget" in line):#downloads data frame from url 
 					url = line.split(" ")
 					for adress in url :
 						if "http" in adress :
@@ -80,18 +80,18 @@ def edit_files(paths):
 					fout.write(f"wget.download('{url}')\n")
     				
 				elif ("pd.read_csv" in line):
-					LIST_ =findOccurrences(url,"/")
+					LIST_ =findOccurrences(url,"/")# changes path 
 					name =url[LIST_[-1]:]
 					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
     					
-				elif ("nlu.load(" in line  and "verbose" not in line):
+				elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
 					tags = findOccurrences(line,")")
 					list__ = list(line)
 					list__[tags[0]] =",verbose = True)" 
 					fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
 					print("".join(list__).encode('ascii', 'ignore').decode('ascii'))
 				elif ("!" not in line and "os.environ" not in line and "%" not in line):
-					fout.write(line)
+					fout.write(line)	
 		fout.close()
 		fin.close()
 
@@ -106,7 +106,7 @@ def run_Files(paths):
 			result_name =path.replace(".done.txt","result.txt")
 			try :
 				os.system(f"python3 '{path}' > '{result_name}'")
-			except Exception as e:
+			except Exception as e:# if it fails write error to file 
 				fout = open("erros.txt", "a+",encoding= "utf-8")
 				fout.write(f"name : {path}")
 				fout.write(f"{e}\n")
