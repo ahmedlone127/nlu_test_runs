@@ -57,8 +57,9 @@ def edit_files(paths):
 					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
     					
 				elif ("nlu.load(" in line ):
-					
-					fout.write(line.replace(")","),verbose = True))"))
+					tags = findOccurrences(line,")")
+					line[tags[0]] = ",verbose = True)"
+					fout.write(line)
 					
 				elif ("%"in line):
 					fout.write("get_ipython().run_line_magic('matplotlib', 'inline')\n")
