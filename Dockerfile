@@ -2,8 +2,7 @@ FROM centos:7
 
 WORKDIR   /app/src/new
 
-COPY test2.py .
-COPY broken.txt .
+COPY nlu_test_runs .
 # Install Java
 RUN yum update -y \
 && yum install java-1.8.0-openjdk -y \
