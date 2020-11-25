@@ -69,7 +69,7 @@ def edit_files(paths):
 			lines = fin.readlines()
 			
 			fout.write("import wget\n")
-			fout.write("from IPython import get_ipython\n")
+			
 			for line in lines : 
 				if ("wget" in line):#downloads data frame from url 
 					url = line.split(" ")
