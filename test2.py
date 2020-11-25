@@ -40,7 +40,6 @@ def edit_files(paths):
 			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
 			lines = fin.readlines()
 			fout.write("import wget\n")
-			fout.write("import matplotlib\n")
 			fout.write("from IPython import get_ipython\n")
 			for line in lines : 
 				if ("wget" in line):
@@ -61,10 +60,7 @@ def edit_files(paths):
 					list__ = list(line)
 					list__[tags[0]] =",verbose = True)" 
 					fout.write("".join(list__))
-					
-				elif ("%"in line):
-					fout.write("get_ipython().run_line_magic('matplotlib', 'inline')\n")
-				elif ("!" not in line and "os.environ" not in line ):
+				elif ("!" not in line and "os.environ" not in line and "%" not in line):
 					fout.write(line)
 		fout.close()
 		fin.close()
