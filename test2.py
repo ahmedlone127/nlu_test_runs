@@ -79,7 +79,7 @@ def run_Files(paths):
 				fout.write(f"{e}\n")
 				fout.write("----------------------------------------------------------------------------------------------------------")
 				fout.close()
-		def check_For_Errors(paths):
+def check_For_Errors(paths):
 	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
 		fin = open(path, "r+", encoding = "utf-8")
