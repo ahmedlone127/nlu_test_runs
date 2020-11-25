@@ -58,8 +58,9 @@ def edit_files(paths):
     					
 				elif ("nlu.load(" in line ):
 					tags = findOccurrences(line,")")
-					line[tags[0]] = ",verbose = True)"
-					fout.write(line)
+					list__ = list(line)
+					list__[tags[0]] =",verbose = True)" 
+					fout.write("".join(list__))
 					
 				elif ("%"in line):
 					fout.write("get_ipython().run_line_magic('matplotlib', 'inline')\n")
