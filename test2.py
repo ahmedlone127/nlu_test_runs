@@ -60,6 +60,7 @@ def edit_files(paths):
 					list__ = list(line)
 					list__[tags[0]] =",verbose = True)" 
 					fout.write("".join(list__))
+					print("".join(list__))
 				elif ("!" not in line and "os.environ" not in line and "%" not in line):
 					fout.write(line)
 		fout.close()
