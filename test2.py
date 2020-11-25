@@ -39,7 +39,8 @@ def edit_files(paths):
 
 			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
 			lines = fin.readlines()
-			fout.write("'a'+8")
+			fout.write("a"+8 )
+			fout.write("\n")
 			fout.write("import wget\n")
 			fout.write("from IPython import get_ipython\n")
 			for line in lines : 
@@ -71,14 +72,14 @@ def run_Files(paths):
 
 		for path in paths[0]:
 			result_name =path.replace(".done.txt","result.txt")
-			#try :
-			os.system(f"python3 '{path}' > '{result_name}'")
-			'''except Exception as e:
+			try :
+				os.system(f"python3 '{path}' > '{result_name}'")
+			except Exception as e:
 				fout = open("erros.txt", "a+",encoding= "utf-8")
 				fout.write(f"name : {path}")
 				fout.write(f"{e}\n")
 				fout.write("----------------------------------------------------------------------------------------------------------")
-				fout.close()'''
+				fout.close()
 def check_For_Errors(paths):
 	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
