@@ -95,7 +95,7 @@ def check_For_Errors(paths):
 def readfiles(files):
 	for file in files[-2:-1]:
 		fout = open(file,"r+",encoding ="utf-8")
-		lines = fout.readlines
+		lines = fout.readlines()
 		for line in lines:
 			print(line)
 		fout.close()
