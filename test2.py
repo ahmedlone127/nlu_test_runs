@@ -92,7 +92,13 @@ def check_For_Errors(paths):
 	for line in lines:
 		print(line)
 	fout.close()
-#print(get_path("app/src/new/nlu/examples/colab/Component Examples/"))	
+def readfiles(files):
+	for file in files[-2:-1]:
+		fout = open(file,"r+",encoding ="utf-8")
+		lines = fout.readlines
+		for line in lines:
+			print(line)
+		fout.close()
 paths_For_ipynb = get_path(path,".ipynb")	
 make_Files(paths_For_ipynb)
 paths_For_txt = get_path(path,".txt")
@@ -102,3 +108,4 @@ run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 print(result_files)
 check_For_Errors(result_files)
+readfiless(resultfiles)
