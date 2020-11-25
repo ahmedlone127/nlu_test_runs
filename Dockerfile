@@ -34,4 +34,4 @@ RUN pip install sklearn
 RUN pip install numpy
 RUN pip install seaborn
 RUN yum -y install nano
-CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/"]
+#CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/"]
