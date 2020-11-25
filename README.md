@@ -11,7 +11,7 @@ def findOccurrences(s, ch):
 
 
 ```
-this funciton is pretty basic , it tkaes a string and a chracter and finds all occurences of  a given charcter and returns a list of all the indexes of the occurences of the character inside the list .it is used in the edit_files function . 
+this funciton is pretty basic , it tkaes a string and a chracter and finds all occurences of  a given charcter and returns a list of all the indexes of the occurences of the character inside the list .it is used in a the edit_files function . 
 ## get_path
 ```
 def get_path(directory,extension):
