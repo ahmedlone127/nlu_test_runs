@@ -31,13 +31,11 @@ def make_Files(paths):
 
 	for path in paths :
 		os.system(f"jupyter nbconvert '{path}'  --to script")
-  
-
-
 ```
 this function takes in  a list of paths of jupyter notebooks and makes a python script for each of them 
 
 ## edit_filse: 
+```
 def edit_files(paths):
 
 	for name in paths:
