@@ -56,7 +56,7 @@ def edit_files(paths):
 					name =url[LIST_[-1]:]
 					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
     					
-				elif ("nlu.load(" in line ):
+				elif ("nlu.load(" in line  and "verbose" not in line):
 					tags = findOccurrences(line,")")
 					list__ = list(line)
 					list__[tags[0]] =",verbose = True)" 
@@ -70,7 +70,7 @@ def edit_files(paths):
 		fin.close()
 
 def run_Files(paths):
-	for path in paths[-5:]:
+	for path in paths[-2:]:
 		result_name =path.replace(".done.txt","result.txt")
 		os.system(f"python3 '{path}' > '{result_name}'")
 def check_For_Errors(paths):
