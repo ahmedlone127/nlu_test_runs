@@ -29,4 +29,5 @@ jobs:
       - name: Run a multi-line script
         run: |
             docker build  -t latest .
-            docker run latest 
+            docker run latest --name nlu_test_run_container
+            docker exec -it nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
