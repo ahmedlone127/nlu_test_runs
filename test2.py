@@ -1,7 +1,7 @@
 import argparse
 import os
 import nbconvert
-from IPython import get_ipython
+
 
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
@@ -39,6 +39,7 @@ def edit_files(paths):
 
 			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
 			lines = fin.readlines()
+			fout.write("'a'+8")
 			fout.write("import wget\n")
 			fout.write("from IPython import get_ipython\n")
 			for line in lines : 
@@ -67,10 +68,18 @@ def edit_files(paths):
 		fin.close()
 
 def run_Files(paths):
-	for path in paths[-2:-1]:
-		result_name =path.replace(".done.txt","result.txt")
-		os.system(f"python3 '{path}' > '{result_name}'")
-def check_For_Errors(paths):
+
+		for path in paths[0]:
+			result_name =path.replace(".done.txt","result.txt")
+			try :
+				os.system(f"python3 '{path}' > '{result_name}'")
+			except Exception as e:
+				fout = open("erros.txt", "a+",encoding= "utf-8")
+				fout.write(f"name : {path}")
+				fout.write(f"{e}\n")
+				fout.write("----------------------------------------------------------------------------------------------------------")
+				fout.close()
+		def check_For_Errors(paths):
 	fout = open("erros.txt", "a+",encoding= "utf-8")
 	for path in paths :
 		fin = open(path, "r+", encoding = "utf-8")
@@ -92,13 +101,13 @@ def check_For_Errors(paths):
 	for line in lines:
 		print(line)
 	fout.close()
-def readfiles(files):
+'''def readfiles(files):
 	for file in files[-2:-1]:
 		fout = open(file,"r+",encoding ="utf-8")
 		lines = fout.readlines()
 		for line in lines:
 			print(line)
-		fout.close()
+		fout.close()'''
 paths_For_ipynb = get_path(path,".ipynb")	
 make_Files(paths_For_ipynb)
 paths_For_txt = get_path(path,".txt")
@@ -108,4 +117,4 @@ run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 print(result_files)
 check_For_Errors(result_files)
-readfiles(paths_of_Files_to_run)
+#readfiles(paths_of_Files_to_run)
