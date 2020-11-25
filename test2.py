@@ -76,7 +76,7 @@ def check_For_Errors(paths):
 		fin = open(path, "r+", encoding = "utf-8")
 		lines = fin.readlines()
 		for line in lines:
-			print(line)
+			
 			if "Error" in line: 
 				fout.write(f"name: {path} \n")
 				fout.write(f"error: \n")
