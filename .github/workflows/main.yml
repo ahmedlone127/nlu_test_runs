@@ -28,9 +28,9 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-            docker build  -it latest .
+            docker build -t latest .
             docker run  --name nlu_test_run_container latest 
-            docker exec -i nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
+            docker exec -it nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
       - name: Run Classifers
         run: |
        
