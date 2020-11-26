@@ -29,7 +29,6 @@ ENV PYSPARK_PYTHON=python3
 RUN pip install nbconvert
 RUN pip install wget
 RUN pip install matplotlib
-RUN pip install IPython
 RUN pip install sklearn
 RUN pip install numpy
 RUN pip install seaborn
