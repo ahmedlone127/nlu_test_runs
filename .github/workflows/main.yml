@@ -34,5 +34,5 @@ jobs:
       - name: Run Classifers
         run: |
        
-            docker exec -it nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
+            docker exec -t nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
  
