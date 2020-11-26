@@ -30,9 +30,9 @@ jobs:
         run: |
             docker build  -t latest .
             docker run  --name nlu_test_run_container latest 
-            #docker exec -it nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
+            docker exec -it nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
       - name: Run Classifers
         run: |
        
-            docker exec -t nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
+            docker exec -i nlu_test_run_container python3 nlu_test_run.py - f "/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"        
  
