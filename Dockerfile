@@ -23,7 +23,7 @@ RUN yum install python3 -y \
 RUN pip install nlu 
 RUN pip install pandas
 RUN yum -y install git
-RUN git clone https://github.com/JohnSnowLabs/nlu
+RUN git clone https://github.com/ahmedlone127/github_nlu_test
 
 ENV PYSPARK_PYTHON=python3
 RUN pip install nbconvert
@@ -33,4 +33,4 @@ RUN pip install sklearn
 RUN pip install numpy
 RUN pip install seaborn
 RUN yum -y install nano
-#CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/"]
+CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/PUBLIC Github Notebooks/Component Examples/"]
