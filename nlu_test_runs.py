@@ -68,7 +68,7 @@ def edit_files(paths):
 			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
 			lines = fin.readlines()
 			
-			fout.write("import wget\n")
+			fout.write("import wget\n").encode('ascii', 'ignore').decode('ascii'))
 			
 			for line in lines : 
 				if ("wget" in line):#downloads data frame from url 
@@ -77,12 +77,12 @@ def edit_files(paths):
 						if "http" in adress :
 							url = adress
 							break
-					fout.write(f"wget.download('{url}')\n")
+					fout.write(f"wget.download('{url}')\n").encode('ascii', 'ignore').decode('ascii'))
     				
 				elif ("pd.read_csv" in line):
 					LIST_ =findOccurrences(url,"/")# changes path 
 					name =url[LIST_[-1]:]
-					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
+					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n").encode('ascii', 'ignore').decode('ascii'))
     					
 				elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
 					tags = findOccurrences(line,")")
@@ -91,7 +91,7 @@ def edit_files(paths):
 					fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
 					print("".join(list__).encode('ascii', 'ignore').decode('ascii'))
 				elif ("!" not in line and "os.environ" not in line and "%" not in line):
-					fout.write(line)	
+					fout.write(line).encode('ascii', 'ignore').decode('ascii'))	
 		fout.close()
 		fin.close()
 
@@ -108,9 +108,9 @@ def run_Files(paths):
 			os.system(f"python3 '{path}' > '{result_name}'")
 		except Exception as e:# if it fails write error to file 
 			fout = open("errors.txt", "a+",encoding= "utf-8")
-			fout.write(f"name : {path}")
-			fout.write(f"{e}\n")
-			fout.write("----------------------------------------------------------------------------------------------------------")
+			fout.write(f"name : {path}").encode('ascii', 'ignore').decode('ascii'))
+			fout.write(f"{e}\n").encode('ascii', 'ignore').decode('ascii'))
+			fout.write("----------------------------------------------------------------------------------------------------------").encode('ascii', 'ignore').decode('ascii'))
 			fout.close()
 def check_For_Errors(paths):
 	"""Checks whether the output contains any errors and saves errors to a file 
@@ -125,11 +125,11 @@ def check_For_Errors(paths):
 		for line in lines:
 			
 			if "Error" in line: 
-				fout.write(f"name: {path} \n")
-				fout.write(f"error: \n")
+				fout.write(f"name: {path} \n").encode('ascii', 'ignore').decode('ascii'))
+				fout.write(f"error: \n").encode('ascii', 'ignore').decode('ascii'))
 				for line in lines :
-					fout.write(f"{line}\n")
-				fout.write("-------------------------------------------------------------------------------------------------- \n")
+					fout.write(f"{line}\n").encode('ascii', 'ignore').decode('ascii'))
+				fout.write("-------------------------------------------------------------------------------------------------- \n").encode('ascii', 'ignore').decode('ascii'))
 				break
 		fin.close()
 	
