@@ -102,16 +102,16 @@ def run_Files(paths):
 	paths   -- path of files to run
 	"""
 
-		for path in paths:
-			result_name =path.replace(".done.txt","result.txt")
-			try :
-				os.system(f"python3 '{path}' > '{result_name}'")
-			except Exception as e:# if it fails write error to file 
-				fout = open("errors.txt", "a+",encoding= "utf-8")
-				fout.write(f"name : {path}")
-				fout.write(f"{e}\n")
-				fout.write("----------------------------------------------------------------------------------------------------------")
-				fout.close()
+	for path in paths:
+		result_name =path.replace(".done.txt","result.txt")
+		try :
+			os.system(f"python3 '{path}' > '{result_name}'")
+		except Exception as e:# if it fails write error to file 
+			fout = open("errors.txt", "a+",encoding= "utf-8")
+			fout.write(f"name : {path}")
+			fout.write(f"{e}\n")
+			fout.write("----------------------------------------------------------------------------------------------------------")
+			fout.close()
 def check_For_Errors(paths):
 	"""Checks whether the output contains any errors and saves errors to a file 
 	
