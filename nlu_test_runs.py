@@ -77,7 +77,7 @@ def edit_files(paths):
 						if "http" in adress :
 							url = adress
 							break
-					fout.write(f"wget.download('{url}')\n".encode('ascii', 'ignore').decode('ascii'))
+					fout.write(f"wget.download('{url}') \n")#.encode('ascii', 'ignore').decode('ascii'))
     				
 				elif ("pd.read_csv" in line):
 					LIST_ =findOccurrences(url,"/")# changes path 
