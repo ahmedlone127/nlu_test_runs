@@ -15,7 +15,7 @@ def findOccurrences(s, ch):
 	s -- string
 	ch -- character
     """
-    return [i for i, letter in enumerate(s) if letter == ch]
+	return [i for i, letter in enumerate(s) if letter == ch]
 
 def get_path(directory,extension):
 	"""Finds all specific type of files in given directory.
