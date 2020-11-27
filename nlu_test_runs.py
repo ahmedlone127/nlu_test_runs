@@ -1,7 +1,7 @@
 import argparse
 import os
 import nbconvert
-
+urls= []
 # getting arguments 
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
@@ -76,9 +76,10 @@ def edit_files(paths):
 					for adress in url :
 						if "http" in adress :
 							url = adress
+							urls.append(url)
 							break
 					fout.write(f"wget.download('{url}') \n")#.encode('ascii', 'ignore').decode('ascii'))
-    				
+    					print(f"wget.download('{url}') \n")#.encode('ascii', 'ignore').decode('ascii'))
 				elif ("pd.read_csv" in line):
 					LIST_ =findOccurrences(url,"/")# changes path 
 					Nname =url[LIST_[-1]:]
@@ -89,7 +90,7 @@ def edit_files(paths):
 					list__ = list(line)
 					list__[tags[0]] =",verbose = True)" 
 					fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-					print("".join(list__).encode('ascii', 'ignore').decode('ascii'))
+					#print("".join(list__).encode('ascii', 'ignore').decode('ascii'))
 				elif ("!" not in line and "os.environ" not in line and "%" not in line):
 					fout.write(line.encode('ascii', 'ignore').decode('ascii'))
 		fout.close()
@@ -148,4 +149,5 @@ run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 print(result_files)
 check_For_Errors(result_files)
+print(urls)
 
