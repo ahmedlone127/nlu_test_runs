@@ -20,7 +20,7 @@ RUN yum install python3 -y \
 && yum clean all \	
 && rm -rf /var/cache/yum
 	
-RUN pip install nlu 
+RUN pip install nlu==1.0.4rc3
 RUN pip install pandas
 RUN yum -y install git
 RUN git clone https://github.com/ahmedlone127/github_nlu_test
