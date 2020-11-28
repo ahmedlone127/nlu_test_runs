@@ -74,7 +74,8 @@ def edit_files(paths):
                 if ("wget" in line):#downloads data frame from url 
                     
                         #.encode('ascii', 'ignore').decode('ascii'))
-                    fout.write(f"os.system({line.replace("!","")})")
+                    line = line.replace("!","")
+                    fout.write(f"os.system({line})")
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
                     line = line[:inedex_[0]] + base + line[inedex_[0]:]
