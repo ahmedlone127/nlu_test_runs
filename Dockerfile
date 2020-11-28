@@ -19,7 +19,7 @@ RUN \
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
+RUN sudo apt install --reinstall software-properties-common
 RUN apt-get update && \
   apt-get install -y software-properties-common && \
   add-apt-repository ppa:jonathonf/python-3.6
