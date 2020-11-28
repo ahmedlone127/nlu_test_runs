@@ -84,7 +84,7 @@ def edit_files(paths):
                     path_= path_.replace(r'\n', "/")+"/"
                    
                     paths_.append(path_)
-                    fout.write(f"wget.download('{url_}',out= '{path_}' )")
+                    fout.write(f"wget.download('{url_}',out=\'{path_}\' )")
                         #.encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
