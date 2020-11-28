@@ -76,7 +76,7 @@ def edit_files(paths):
                     line = line.replace("!","")
                     fout.write(f"os.system('''{line}''')".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
-                    line.replace("'", f"'{base[:-1]}")
+                    line = line.replace("'", f"'{base[:-1]}")
                  
                     fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
                             
