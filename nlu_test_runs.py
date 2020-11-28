@@ -80,7 +80,7 @@ def edit_files(paths):
                     fout.write(f"wget.download('{url_}',out={url[-1]})".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
-                    line = line[:inedex_] + base + line[inedex_:]
+                    line = line[:inedex_[0]] + base + line[inedex_[0]:]
                     fout.write(f"df=pd.read_csv('{line}')\n".encode('ascii', 'ignore').decode('ascii'))
                         
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
