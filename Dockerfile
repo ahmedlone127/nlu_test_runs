@@ -6,6 +6,7 @@ COPY nlu_test_runs.py .
 
 
 # To solve add-apt-repository : command not found
+RUN sudo apt install --reinstall software-properties-common
 RUN apt-get -y install software-properties-common
 
 # Install Java
@@ -19,7 +20,7 @@ RUN \
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-RUN sudo apt install --reinstall software-properties-common
+
 RUN apt-get update && \
   apt-get install -y software-properties-common && \
   add-apt-repository ppa:jonathonf/python-3.6
