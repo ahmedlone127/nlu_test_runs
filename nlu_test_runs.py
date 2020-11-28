@@ -72,19 +72,9 @@ def edit_files(paths):
             
             for line in lines : 
                 if ("wget" in line):#downloads data frame from url 
-                    url = line.split(" ")
-                    for index,element in enumerate(url) :
-                        if "http" in element :
-                            url_ =element
-                        elif element=="-P" :
-                            
-                            path_ = url[index+1]
-                    path_ = base[:-1]+path_
-                    url_=url_.replace(r'\n', "")
-                    path_= path_.replace(r'\n', "")+"/"
-                    paths_.append(path_)
-                    fout.write(f"wget.download('{url_}','{path_}' )")
+                    
                         #.encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"os.system({line.replace("!","")})")
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
                     line = line[:inedex_[0]] + base + line[inedex_[0]:]
