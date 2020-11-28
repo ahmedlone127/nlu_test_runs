@@ -79,7 +79,7 @@ def edit_files(paths):
                              
                 elif ("pd.read_csv" in line):
 
-                    line = line.replace("", f"'{path}",1)
+                    line = line.replace("", f"'{path[:-1]}",1)
                  
                     fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
