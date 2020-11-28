@@ -79,7 +79,6 @@ def edit_files(paths):
 							urls.append(url)
 							break
 					fout.write(f"wget.download('{url}')".encode('ascii', 'ignore').decode('ascii'))
-					print(f"wget.download('{url}') ")#.encode('ascii', 'ignore').decode('ascii'))
 				elif ("pd.read_csv" in line):
 					LIST_ =findOccurrences(url,"/")# changes path 
 					Nname =url[LIST_[-1]:]
@@ -132,6 +131,7 @@ def check_For_Errors(paths):
 					fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
 				fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
 				break
+			
 		fin.close()
 	
 	fout.close()
@@ -147,7 +147,11 @@ edit_files(paths_For_txt)
 paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
-print(result_files)
 check_For_Errors(result_files)
-print(urls)
+for path in result_files:
+	fin = open(path, "r+", encoding = "utf-8")
+	lines = fin.readlines()
+	for line in lines:
+		print(line)
+	fin.close()
 
