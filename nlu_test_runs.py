@@ -79,7 +79,8 @@ def edit_files(paths):
                         elif element=="-P" :
                             
                             path = url[index+1]
-                    fout.write(f"wget.download('{url_}',out= '{base[:-1]}{path}' )".encode('ascii', 'ignore').decode('ascii'))
+                    path = base[:-1]+path
+                    fout.write(f"wget.download('{url_}',out= '{path}' )".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
                     line = line[:inedex_[0]] + base + line[inedex_[0]:]
