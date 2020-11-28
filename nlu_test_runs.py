@@ -153,4 +153,4 @@ result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
 
 for  i in paths_ :
-    print (f" '{i}' ")
+    print ({i})
