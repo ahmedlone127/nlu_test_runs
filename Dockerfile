@@ -1,28 +1,37 @@
-FROM centos:7
+FROM ubuntu:16.04
 
 WORKDIR   /app/src/new
 
 COPY nlu_test_runs.py .
+
+
+# To solve add-apt-repository : command not found
+RUN apt-get -y install software-properties-common
+
 # Install Java
-RUN yum update -y \
-&& yum install java-1.8.0-openjdk -y \
-&& yum clean all \
-&& rm -rf /var/cache/yum
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer --allow-unauthenticated && \
+  rm -rf /var/cache/oracle-jdk8-installer
 
-# Set JAVA_HOME environment var
-ENV JAVA_HOME="/usr/lib/jvm/jre-openjdk"
 
-# Install Python
-RUN yum install python3 -y \
-&& pip3 install --upgrade pip setuptools wheel \
-&& if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi \
-&& if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi \
-&& yum clean all \	
-&& rm -rf /var/cache/yum
-	
-RUN pip install nlu==1.0.4rc3
-RUN pip install pandas
-RUN yum -y install git
+# Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
+RUN apt-get update && \
+  apt-get install -y software-properties-common && \
+  add-apt-repository ppa:jonathonf/python-3.6
+RUN apt-get update
+
+RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv
+RUN apt-get install -y git
+
+# update pip
+RUN python3.6 -m pip install pip --upgrade
+RUN python3.6 -m pip install wheel
+
 RUN git clone https://github.com/ahmedlone127/github_nlu_test
 
 ENV PYSPARK_PYTHON=python3
