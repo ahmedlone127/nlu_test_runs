@@ -73,15 +73,17 @@ def edit_files(paths):
             for line in lines : 
                 if ("wget" in line):#downloads data frame from url 
                     url = line.split(" ")
-                    for adress in url :
-                        if "http" in adress :
-                            url_ = adress
-                            break
-                    fout.write(f"wget.download('{url_}',out= '{base[:-1]}+{url[-1]}' )".encode('ascii', 'ignore').decode('ascii'))
+                    for index,element in enumerate(url) :
+                        if "http" in element :
+                            url_ =element
+                        elif :
+                            element=="-P"
+                            path = url[index+1]
+                    fout.write(f"wget.download('{url_}',out= '{base[:-1]}{path}' )".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
                     line = line[:inedex_[0]] + base + line[inedex_[0]:]
-                    fout.write(f"df=pd.read_csv('{line}')\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
                         
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
