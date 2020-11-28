@@ -152,5 +152,5 @@ run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
 
-for  i in path_ :
+for  i in paths_ :
     print (f" '{i}' ")
