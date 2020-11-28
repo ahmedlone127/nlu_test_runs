@@ -76,8 +76,8 @@ def edit_files(paths):
                     for index,element in enumerate(url) :
                         if "http" in element :
                             url_ =element
-                        elif :
-                            element=="-P"
+                        elif element=="-P" :
+                            
                             path = url[index+1]
                     fout.write(f"wget.download('{url_}',out= '{base[:-1]}{path}' )".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
