@@ -77,7 +77,8 @@ def edit_files(paths):
                     fout.write(f"os.system('''{line}''').encode('ascii', 'ignore').decode('ascii')")
                 elif ("pd.read_csv" in line):
                     line.replace("'", f"'{base[:-1]}")
-                    fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
+                    print(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"{line}\n")
                             
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
@@ -144,3 +145,4 @@ run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
 
+        
