@@ -77,7 +77,7 @@ def edit_files(paths):
                         if "http" in adress :
                             url_ = adress
                             break
-                    fout.write(f"wget.download('{url_}',out={url[-1]})".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"wget.download('{url_}',out= '{base[:-1]}+{url[-1]}' )".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
                     line = line[:inedex_[0]] + base + line[inedex_[0]:]
