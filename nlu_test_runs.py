@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
 args=parser.parse_args()
 path = args.file
-paths = []
+paths_ = []
 def findOccurrences(s, ch):
     """Finds Occurences of a character in a string.
     
@@ -79,8 +79,8 @@ def edit_files(paths):
                         elif element=="-P" :
                             
                             path_ = url[index+1]
-                    path_ = base[:-1]+path
-                    paths.append(path_)
+                    path_ = base[:-1]+path_
+                    paths_.append(path_)
                     fout.write(f"wget.download('{url_}',out= '{path_}' )".encode('ascii', 'ignore').decode('ascii'))
                 elif ("pd.read_csv" in line):
                     inedex_ = findOccurrences(line,"'")
