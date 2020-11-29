@@ -75,17 +75,7 @@ def edit_files(paths):
                     line = line.replace("!","")
                     fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
                
-                             
-                elif ("pd.read_csv" in line):
-
-                    #line = line.replace("'", f"'{path[:-1]}",1)
-                 
-                    fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
-                elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
-                    tags = findOccurrences(line,")")
-                    list__ = list(line)
-                    list__[tags[0]] =",verbose = True)" 
-                    fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
+                            
                     
                 elif ("!" not in line and "os.environ" not in line and "%" not in line):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
