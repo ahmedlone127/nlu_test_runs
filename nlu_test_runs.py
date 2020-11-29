@@ -74,7 +74,7 @@ def edit_files(paths):
                         
                             #.encode('ascii', 'ignore').decode('ascii'))
                     line = line.replace("!","")
-                    fout.write(f"os.system('''{line}\n''')".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
                
                              
                 elif ("pd.read_csv" in line):
