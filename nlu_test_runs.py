@@ -146,5 +146,9 @@ paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
-
-        
+print("----------------------------------------------------------------------------------------------------------------------------------------")
+for path in result_files :
+    fin = open(path, "r+", encoding = "utf-8")
+    lines = fin.readlines()
+    for line in lines:
+        print(line)
