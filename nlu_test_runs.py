@@ -137,7 +137,7 @@ def check_For_Errors(paths):
     lines = fout.readlines()
     for line in lines:
         print(line)
-        fout.close()
+    fout.close()
 paths_For_ipynb = get_path(path,".ipynb")   
 make_Files(paths_For_ipynb)
 paths_For_txt = get_path(path,".txt")
