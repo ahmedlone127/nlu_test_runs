@@ -53,6 +53,7 @@ def make_Files(paths):
     """
     for path in paths :
         os.system(f"jupyter nbconvert '{path}'  --to script")
+
 def edit_files(paths):
     """Removes some parts of the file to make it runnable
         
@@ -73,9 +74,19 @@ def edit_files(paths):
                         
                             #.encode('ascii', 'ignore').decode('ascii'))
                     line = line.replace("!","")
-                    fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"os.system('''{line}\n''')".encode('ascii', 'ignore').decode('ascii'))
                
-                            
+                             
+                elif ("pd.read_csv" in line):
+
+                    #line = line.replace("'", f"'{path[:-1]}",1)
+                 
+                    fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
+                elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
+                    tags = findOccurrences(line,")")
+                    list__ = list(line)
+                    list__[tags[0]] =",verbose = True)" 
+                    fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
                     
                 elif ("!" not in line and "os.environ" not in line and "%" not in line):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
@@ -91,8 +102,14 @@ def run_Files(paths):
 
     for path in paths:
         result_name =path.replace(".done.txt","result.txt")
-        os.system(f"python3 '{path}' > '{result_name}'")
-       
+        try :
+            os.system(f"python3 '{path}' > '{result_name}'")
+        except Exception as e:# if it fails write error to file 
+            fout = open("errors.txt", "a+",encoding= "utf-8")    
+            fout.write(f"name : {path}".encode('ascii', 'ignore').decode('ascii'))
+            fout.write(f"{e}\n".encode('ascii', 'ignore').decode('ascii'))
+            fout.write("----------------------------------------------------------------------------------------------------------".encode('ascii', 'ignore').decode('ascii'))
+            fout.close()
 def check_For_Errors(paths):
     """Checks whether the output contains any errors and saves errors to a file 
         
