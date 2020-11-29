@@ -53,7 +53,6 @@ def make_Files(paths):
     """
     for path in paths :
         os.system(f"jupyter nbconvert '{path}'  --to script")
-
 def edit_files(paths):
     """Removes some parts of the file to make it runnable
         
