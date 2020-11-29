@@ -1,10 +1,10 @@
-#description :
+# description :
 this docker container is used to automate the running of notebooks and is mainly used for the purpose of testing. It uses nbconvert along with a python script to convert notebooks into python3 scripts and then runs those scripts and records the results in a txt file, after that it reads the txt files for errors and writes those errors to another txt file.
 
-#Usage:
+# Usage:
 the main script that handles everything in here is nlu_test_runs.py and it is made up of multiple functions which are all described below
 
-##findOccurrences
+## findOccurrences
 ```
 def findOccurrences(s, ch):
 
@@ -13,7 +13,7 @@ def findOccurrences(s, ch):
 ```
 this function is pretty basic, it takes a string and a character and finds all occurrences of a given character, and returns a list of all the indexes of the occurrences of the character inside the list .it is used in the edit_files function.
 
-##get_path
+## get_path
 ```
 def get_path(directory,extension):
   
@@ -26,7 +26,7 @@ def get_path(directory,extension):
 ```
 this function takes a directory and an extensiona and returns a list of paths of all files ending with the given extenison . the get_last_path function is similar to this but it takes a third parameter which is keyword and it returns all the files inside the direrctory whose names have the keyword in them and end with the given extension
 
-##make_Files
+## make_Files
 ```
 def make_Files(paths):
 
@@ -35,7 +35,7 @@ def make_Files(paths):
 ```
 this function takes in a list of paths of jupyter notebooks and makes a python script for each of them
 
-##edit_filse:
+## edit_filse:
 ```
 def edit_files(paths):
 
@@ -74,7 +74,7 @@ def edit_files(paths):
 ```
 the above function takes the patht to the python scripts and removes some of the parts that could crash during execution and makes a new file with all the required changes, it removes the nlu installtion and java enviromet configuration part , it also removes the condifguration for matplotlib . It imports the wget library to download the data frame and replaces the code for downloading with the correct synatx .
 
-##run_Files
+## run_Files
 ```
 def run_Files(paths):
 		for path in paths:
@@ -90,7 +90,7 @@ def run_Files(paths):
 ```
 This function tries to run the edited files and if they fail it writes them to the error file
 
-##check_For_Errors
+## check_For_Errors
 ```
 def check_For_Errors(paths):
 	
