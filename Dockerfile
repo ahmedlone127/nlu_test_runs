@@ -33,4 +33,5 @@ RUN pip install sklearn
 RUN pip install numpy
 RUN pip install seaborn
 RUN yum -y install nano
+RUN yum -y install wget
 CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/github_nlu_test/PUBLIC Github Notebooks/Component Examples/Embeddings_for_Sentences/"]
