@@ -103,7 +103,7 @@ def run_Files(paths):
     for path in paths:
         result_name =path.replace(".done.txt","result.txt")
         try :
-            os.system(f"python3 '{path}' > '{result_name}'")
+            os.system(f"python3 '{path}' &> '{result_name}'")
         except Exception as e:# if it fails write error to file 
             fout = open("errors.txt", "a+",encoding= "utf-8")    
             fout.write(f"name : {path}".encode('ascii', 'ignore').decode('ascii'))
@@ -122,11 +122,11 @@ def check_For_Errors(paths):
         lines = fin.readlines()
         for line in lines:
                 
-            if "Error" in line: 
+            if "Error" in line and "UnicodeEncode" not in line: 
                 fout.write(f"name: {path} \n".encode('ascii', 'ignore').decode('ascii'))
-                fout.write(f"error: \n".encode('ascii', 'ignore').decode('ascii'))
+                fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
                 for line in lines :
-                    fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"{line}".encode('ascii', 'ignore').decode('ascii'))
                 fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
                 break
                 
