@@ -73,14 +73,27 @@ def edit_files(paths):
                         
                             #.encode('ascii', 'ignore').decode('ascii'))
                     line = line.replace("!","")
+
                     fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
-               
+                    if "-P" not in line:
+                        line = line.split(" ")
+
+                        for  i in line :
+                            if "http" in i : 
+                                list_ = findOccurrences(i,"/")
+                                name = i[list_[-1]:]
+                                break
                              
                 elif ("pd.read_csv" in line):
-
+                    for line in lines:
+                        if "wget" and "-P" in line :
+                            fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
+                        elif "wget" in line and "-P" not in line:
+                            path_ = path+name
+                            fout.write(f"pd.read_csv('{path_}')\n".encode('ascii', 'ignore').decode('ascii'))
                     #line = line.replace("'", f"'{path[:-1]}",1)
                  
-                    fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
+                        
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
                     list__ = list(line)
