@@ -19,9 +19,6 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     && make altinstall \
     && cd / \
     && rm -rf Python-${PYTHON_VERSION}
-RUN apt-get update && apt-get install -y \
-    php5-mcrypt \
-    python-pip
 
 
 RUN apt-get update && apt-get install -y \
