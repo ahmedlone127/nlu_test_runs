@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
 # ENV Variables
