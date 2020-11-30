@@ -93,7 +93,7 @@ def edit_files(paths):
                 
                              
                
-                elif ("train_path" in line):
+                if ("train_path" in line):
                     fout.write(f"train_path = '{train_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("test_path" in line):
                     fout.write(f"test_path = '{test_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
