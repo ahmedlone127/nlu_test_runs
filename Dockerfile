@@ -1,4 +1,4 @@
-FROM ubuntu: 16.04
+FROM ubuntu:16.04
 WORKDIR   /app/src/new
 
 COPY nlu_test_runs.py .
