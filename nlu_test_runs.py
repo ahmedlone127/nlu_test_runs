@@ -102,7 +102,7 @@ def run_Files(paths):
     for path in paths:
         result_name =path.replace(".done.txt","result.txt")
         try :
-            os.system(f"python3 '{path}' &> '{result_name}'")
+            os.system(f"python3.6 '{path}' &> '{result_name}'")
             print("running")
             os.system("python --version")
         except Exception as e:# if it fails write error to file 
