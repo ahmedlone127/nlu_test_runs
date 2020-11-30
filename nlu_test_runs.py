@@ -85,7 +85,7 @@ def edit_files(paths):
                         for  i in line :
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
-                                name = i[list_[-1]:]
+                                name = i
                                 break
 
                         print("done")
