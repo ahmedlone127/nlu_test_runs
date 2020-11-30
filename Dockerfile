@@ -3,6 +3,7 @@ WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
 
 # To solve add-apt-repository : command not found
+RUN  apt-get update
 RUN apt-get -y install software-properties-common
 
 # Install Java
