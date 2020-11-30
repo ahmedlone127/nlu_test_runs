@@ -75,9 +75,10 @@ def edit_files(paths):
                 if ("wget" in line):#downloads data frame from url 
                         
                             #.encode('ascii', 'ignore').decode('ascii'))
-                    line = line.replace("!","")
+                    if "-P" in line:
+                        line = line.replace("!","")
 
-                    fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
                     if "-P" not in line:
                         line = line.split(" ")
 
@@ -85,24 +86,9 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name = i[list_[-1]:]
-                                print(name)
-                                if "train.csv" in name:
-                                    train_path_ = base[:-1]+name.strip()
-                                elif "test.csv" in name: 
-                                    test_path_ = base[:-1]+name.strip()
-                            else:
-                                path_ =  base[:-1]+name.strip()
                                 break
 
-                             
-               
-                elif ("train_path" in line):
-                    fout.write(f"train_path = '{train_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
-                elif ("test_path" in line):
-                    fout.write(f"test_path = '{test_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
-                    #line = line.replace("'", f"'{path[:-1]}",1)
-                 
-                        
+                        fout.write(f"os.system('''wget -N {name} -P /content''')\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
                     list__ = list(line)
