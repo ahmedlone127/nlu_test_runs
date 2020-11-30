@@ -105,6 +105,7 @@ def run_Files(paths):
         try :
             os.system(f"python3 '{path}' &> '{result_name}'")
             print("running")
+            os.system("python --version")
         except Exception as e:# if it fails write error to file 
             fout = open("errors.txt", "a+",encoding= "utf-8")    
             fout.write(f"name : {path}".encode('ascii', 'ignore').decode('ascii'))
