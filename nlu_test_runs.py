@@ -79,7 +79,7 @@ def edit_files(paths):
                         line = line.replace("!","")
 
                         fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
-                    if "-P" not in line:
+                    elif "-P" not in line:
                         line = line.split(" ")
 
                         for  i in line :
@@ -88,6 +88,7 @@ def edit_files(paths):
                                 name = i[list_[-1]:]
                                 break
 
+                        print("done")
                         fout.write(f"os.system('''wget -N {name} -P /content''')\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
