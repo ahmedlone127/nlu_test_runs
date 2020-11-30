@@ -82,6 +82,7 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name = i[list_[-1]:]
+                                print(name)
                                 if "train.csv" in name:
                                     train_path_ = base[:-1]+name.strip()
                                 elif "test.csv" in name: 
@@ -89,11 +90,10 @@ def edit_files(paths):
                             else:
                                 path_ =  base[:-1]+name.strip()
                                 break
-            for line in lines : 
-                
+
                              
                
-                if ("train_path" in line):
+                elif ("train_path" in line):
                     fout.write(f"train_path = '{train_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("test_path" in line):
                     fout.write(f"test_path = '{test_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
