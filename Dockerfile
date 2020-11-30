@@ -10,18 +10,15 @@ RUN apt-get update && \
 ENV JAVA_HOME="/usr/lib/jvm/jre-openjdk"
 
 # Install Python
+RUN sudo apt update
+RUN sudo apt install software-properties-common
+RUN sudo add-apt-repository ppa:deadsnakes/ppa
+RUN sudo apt update
+RUN sudo apt install python3.7
+ 
 
-RUN apt-get update
-RUN apt-get install -y software-properties-common vim
-RUN add-apt-repository ppa:jonathonf/python-3.6
-RUN apt-get update
 
-RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv python-dev libssl-dev swig
-RUN apt-get install -y git
 
-# update pip
-RUN python3.6 -m pip install pip --upgrade
-RUN python3.6 -m pip install wheel	
 RUN pip install nlu==1.0.4rc3
 RUN pip install pandas
 RUN apt -y install git
