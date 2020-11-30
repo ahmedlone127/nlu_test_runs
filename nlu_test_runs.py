@@ -89,8 +89,8 @@ def edit_files(paths):
                         if "wget" and "-P" in line :
                             fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
                         elif "wget" in line and "-P" not in line:
-                            path_ = path+name
-                            fout.write(f"pd.read_csv('{path_}')\n".encode('ascii', 'ignore').decode('ascii'))
+                            path_ = base[:-1]+name
+                            fout.write(f"pd.read_csv('''{path_}''')\n".encode('ascii', 'ignore').decode('ascii'))
                     #line = line.replace("'", f"'{path[:-1]}",1)
                  
                         
