@@ -67,7 +67,7 @@ def edit_files(paths):
             lines = fin.readlines()
                 
             fout.write("import wget\n".encode('ascii', 'ignore').decode('ascii'))
-                
+            
             for line in lines : 
                 if ("wget" in line):#downloads data frame from url 
                         
@@ -83,18 +83,20 @@ def edit_files(paths):
                                 list_ = findOccurrences(i,"/")
                                 name = i[list_[-1]:]
                                 if "train.csv" in name:
-                                    train_path = base[:-1]+name.strip()
+                                    train_path_ = base[:-1]+name.strip()
                                 elif "test.csv" in name: 
-                                    test_path = base[:-1]+name.strip()
+                                    test_path_ = base[:-1]+name.strip()
                             else:
                                 path_ =  base[:-1]+name.strip()
                                 break
+            for line in lines : 
+                
                              
                
                 elif ("train_path" in line):
-                    fout.write(f"train_path = '{train_path}'\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"train_path = '{train_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("test_path" in line):
-                    fout.write(f"test_path = '{test_path}'\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"test_path = '{test_path_}'\n".encode('ascii', 'ignore').decode('ascii'))
                     #line = line.replace("'", f"'{path[:-1]}",1)
                  
                         
