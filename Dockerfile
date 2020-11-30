@@ -5,7 +5,7 @@ RUN apt-get update -qq
 RUN apt-get install -y openjdk-8-jdk-headless -qq
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-RUN apt-get install software-properties-common
+RUN apt-get install -y software-properties-common
 
 RUN add-apt-repository ppa:jonathonf/python-3.6
 RUN apt-get update
