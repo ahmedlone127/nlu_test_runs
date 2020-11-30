@@ -1,5 +1,7 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
+WORKDIR   /app/src/new
 
+COPY nlu_test_runs.py .
 # To solve add-apt-repository : command not found
 RUN apt-get update -qq 
 RUN apt-get install -y openjdk-8-jdk-headless -qq
