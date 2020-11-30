@@ -10,12 +10,13 @@ RUN apt-get update && \
 ENV JAVA_HOME="/usr/lib/jvm/jre-openjdk"
 
 # Install Python
-RUN sudo apt update
-RUN sudo apt install software-properties-common
-RUN sudo add-apt-repository ppa:deadsnakes/ppa
-RUN sudo apt update
-RUN sudo apt install python3.7
- 
+
+RUN apt-get update \
+  && apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip
+
 
 
 
