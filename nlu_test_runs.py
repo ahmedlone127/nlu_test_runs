@@ -1,6 +1,5 @@
 import argparse
 import os
-import nbconvert
 base = "/app/src/new/"
 # getting arguments 
 parser = argparse.ArgumentParser(description = "pass file")
