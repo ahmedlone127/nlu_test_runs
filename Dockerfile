@@ -3,7 +3,7 @@ WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
 # ENV Variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PYTHON_VERSION="3.6.5"
+ENV PYTHON_VERSION="3.6.8"
 
 # Install core packages
 RUN apt-get update
