@@ -82,18 +82,19 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name = i[list_[-1]:]
-                                path_ = base[:-1]+name.strip()
+                                if "train.csv" in name:
+                                    train_path = base[:-1]+name.strip()
+                                elif "test.csv" in name: 
+                                    test_path = base[:-1]+name.strip()
+                            else:
+                                path_ =  base[:-1]+name.strip()
                                 break
                              
-                elif ("pd.read_csv" in line):
-                    for line in lines:
-                        if "wget" and "-P" in line :
-                            fout.write(f"{line}\n".encode('ascii', 'ignore').decode('ascii'))
-                        elif "wget" in line and "-P" not in line:
-                            
-                            fout.write(f"pd.read_csv('''{path_}''')\n".encode('ascii', 'ignore').decode('ascii'))
+               
                 elif ("train_path" in line):
-                    fout.write(f"train_path = '{path_}'\n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write(f"train_path = '{train_path}'\n".encode('ascii', 'ignore').decode('ascii'))
+                elif ("test_path" in line):
+                    fout.write(f"test_path = '{test_path}'\n".encode('ascii', 'ignore').decode('ascii'))
                     #line = line.replace("'", f"'{path[:-1]}",1)
                  
                         
@@ -107,7 +108,6 @@ def edit_files(paths):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
             fout.close()
             fin.close()
-
 def run_Files(paths):
     """Runs file and saves output to a file 
         
