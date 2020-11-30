@@ -149,6 +149,6 @@ result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
 fout=open("errors.txt","r+",encoding = "utf-8")
 lines = fout.readlines()
-    for line in lines:
+for line in lines:
         print(line)
 fout.close()
