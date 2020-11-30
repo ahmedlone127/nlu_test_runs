@@ -52,7 +52,7 @@ def make_Files(paths):
     paths   -- path of files to convert 
     """
     for path in paths :
-        os.system(f"jupyter nbconvert --to script '{path}' ")
+        os.system(f"jupyter nbconvert --to script {path} ")
 
 def edit_files(paths):
     """Removes some parts of the file to make it runnable
