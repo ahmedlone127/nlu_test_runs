@@ -36,17 +36,17 @@ ENV JAVA_HOME="/usr/lib/jvm/jre-openjdk"
 
 
 RUN pip3 install nlu
-RUN pip install pandas
+RUN pip3 install pandas
 RUN apt -y install git
 RUN git clone https://github.com/ahmedlone127/github_nlu_test
 
 ENV PYSPARK_PYTHON=python3
-RUN pip install nbconvert
-RUN pip install wget
-RUN pip install matplotlib
-RUN pip install sklearn
-RUN pip install numpy
-RUN pip install seaborn
+RUN pip3 install nbconvert
+RUN pip3 install wget
+RUN pip3 install matplotlib
+RUN pip3 install sklearn
+RUN pip3 install numpy
+RUN pip3 install seaborn
 RUN apt -y install nano
 RUN apt -y install wget
-CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/github_nlu_test/PUBLIC Github Notebooks/Component Examples/"]
+CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/github_nlu_test/PUBLIC Github Notebooks/Training/"]
