@@ -49,4 +49,4 @@ RUN pip3 install numpy
 RUN pip3 install seaborn
 RUN apt -y install nano
 RUN apt -y install wget
-CMD ["python3", "nlu_test_runs.py","-f","/app/src/new/github_nlu_test/PUBLIC Github Notebooks/Training/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/github_nlu_test/PUBLIC Github Notebooks/Training/"]
