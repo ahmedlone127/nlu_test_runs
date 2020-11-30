@@ -7,6 +7,8 @@ parser.add_argument("-f","--file",type = str,help = "directory")
 args=parser.parse_args()
 path = args.file
 paths_ = []
+train_path_ = ""
+test_path_ = ""
 def findOccurrences(s, ch):
     """Finds Occurences of a character in a string.
         
