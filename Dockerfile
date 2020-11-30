@@ -35,7 +35,7 @@ ENV JAVA_HOME="/usr/lib/jvm/jre-openjdk"
 
 
 
-RUN pip install nlu==1.0.4rc3
+RUN pip install nlu
 RUN pip install pandas
 RUN apt -y install git
 RUN git clone https://github.com/ahmedlone127/github_nlu_test
