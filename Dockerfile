@@ -25,12 +25,12 @@ RUN apt update \
 	&& apt-get install -y openjdk-8-jre
 
 
-RUN echo 'alias python=python3.6' >> ~/.bashrc \
+RUN echo 'alias python=python3.6' >> ~/.bashrct \
    
 	&& export PYSPARK_PYTHON=/usr/bin/python3.6
 
 
-ENV PYSPARK_PYTHON=python3.6
+ENV PYSPARK_PYTHON=/usr/bin/python3.6
 RUN pip3 install nlu\
  
 	&& pip3 install pandas \
