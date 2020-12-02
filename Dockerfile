@@ -20,9 +20,9 @@ RUN apt update \
 
 
 RUN echo 'alias python=python3.6' >> ~/.bashrct 
-RUN export PYSPARK_PYTHON=/usr/bin/python3.6
+# RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
-#ENV PYSPARK_PYTHON=/usr/bin/python3.6
+ENV PYSPARK_PYTHON=/usr/bin/python3.6
 RUN pip3 install nlu\
  
 	&& pip3 install pandas \
