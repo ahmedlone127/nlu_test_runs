@@ -1,12 +1,6 @@
 FROM ubuntu
 
 WORKDIR   /app/src/new
-RUN apt-get update -qq 
-
-RUN apt-get install -y openjdk-8-jdk-headless -qq
-
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
 COPY nlu_test_runs.py .
 RUN apt update \
    
