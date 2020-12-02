@@ -68,8 +68,6 @@ def edit_files(paths):
 
             fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
             lines = fin.readlines()
-                
-            fout.write("import wget\n".encode('ascii', 'ignore').decode('ascii'))
             
             for line in lines : 
                 if ("wget" in line):#downloads data frame from url 
