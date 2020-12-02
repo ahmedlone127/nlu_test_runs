@@ -1,13 +1,11 @@
 import argparse
 import os
-base = "/app/src/new/"
+#base = "/app/src/new/"
 # getting arguments 
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
 args=parser.parse_args()
 path = args.file
-paths_ = []
-
 def findOccurrences(s, ch):
     """Finds Occurences of a character in a string.
         
@@ -55,8 +53,6 @@ def make_Files(paths):
         os.system(f"jupyter nbconvert --to script '{path}' ")
 
 def edit_files(paths):
-    train_path_ = ""
-    test_path_ = ""
     """Removes some parts of the file to make it runnable
         
     Keyword arguments:
@@ -85,8 +81,6 @@ def edit_files(paths):
                                 list_ = findOccurrences(i,"/")
                                 name = i
                                 break
-
-                        print("done")
                         fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
@@ -109,7 +103,7 @@ def run_Files(paths):
         result_name =path.replace(".done.txt","result.txt")
         #  &> '{result_name}'
         try :
-            os.system(f"python3.6 '{path}'  >'{result_name}' 2>&1")
+            os.system(f"python3.6 '{path}'  > out 2> {result_name}")
         except Exception as e:# if it fails write error to file 
             fout = open("errors.txt", "a+",encoding= "utf-8")    
             fout.write(f"name : {path}".encode('ascii', 'ignore').decode('ascii'))
