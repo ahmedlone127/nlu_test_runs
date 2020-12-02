@@ -104,6 +104,12 @@ def run_Files(paths):
         #  &> '{result_name}'
         try :
             os.system(f"python3.6 '{path}'  >'{result_path}' 2>&1")
+        except Exception as e:# if it fails write error to file 
+            fout = open("errors.txt", "a+",encoding= "utf-8")    
+            fout.write(f"name : {path}".encode('ascii', 'ignore').decode('ascii'))
+            fout.write(f"{e}\n".encode('ascii', 'ignore').decode('ascii'))
+            fout.write("----------------------------------------------------------------------------------------------------------".encode('ascii', 'ignore').decode('ascii'))
+            fout.close()
 
 def check_For_Errors(paths):
     """Checks whether the output contains any errors and saves errors to a file 
@@ -117,7 +123,7 @@ def check_For_Errors(paths):
         lines = fin.readlines()
         for line in lines:
 
-            if "Error" in line and "UnicodeEncode" not in line: 
+            if "Error" in line and "UnicodeEncode" not in line == True: 
                 fout.write(f"name: {path} \n".encode('ascii', 'ignore').decode('ascii'))
                 fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
                 for line in lines :
