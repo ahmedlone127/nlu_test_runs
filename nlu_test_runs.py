@@ -127,7 +127,7 @@ def check_For_Errors(paths):
                 fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
                 for line in lines :
                     fout.write(f"{line}".encode('ascii', 'ignore').decode('ascii'))
-                fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
+                    fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
                 break
                 
         fin.close()
