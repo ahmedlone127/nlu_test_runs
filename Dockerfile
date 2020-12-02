@@ -45,4 +45,4 @@ RUN pip3 install nlu\
 
 	&& apt-get install wget
 
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Training/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Embeddings_for_Words/"]
