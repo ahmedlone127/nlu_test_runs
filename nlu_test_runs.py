@@ -122,13 +122,13 @@ def check_For_Errors(paths):
         fin = open(path, "r+", encoding = "utf-8")
         lines = fin.readlines()
         for line in lines:
-
+            print(line)
             if "Error" in line and "UnicodeEncode" not in line == True: 
                 fout.write(f"name: {path} \n".encode('ascii', 'ignore').decode('ascii'))
                 fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
                 for line in lines :
                     fout.write(f"{line}".encode('ascii', 'ignore').decode('ascii'))
-                    fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
+                fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
                 break
                 
         fin.close()
