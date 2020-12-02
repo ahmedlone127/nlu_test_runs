@@ -103,12 +103,12 @@ def run_Files(paths):
         result_name =path.replace(".done.txt","result.txt")
         #  &> '{result_name}'
         try :
-            os.system(f"python3.6 '{path}'  >'{result_path}' 2>&1")
+            os.system(f"python3.6 '{path}'  >'{result_name}' 2>&1")
         except Exception as e:# if it fails write error to file 
             fout = open("errors.txt", "a+",encoding= "utf-8")    
-            fout.write(f"name : {path}".encode('ascii', 'ignore').decode('ascii'))
+            fout.write(f"name : {path}\n".encode('ascii', 'ignore').decode('ascii'))
             fout.write(f"{e}\n".encode('ascii', 'ignore').decode('ascii'))
-            fout.write("----------------------------------------------------------------------------------------------------------".encode('ascii', 'ignore').decode('ascii'))
+            fout.write("----------------------------------------------------------------------------------------------------------\n".encode('ascii', 'ignore').decode('ascii'))
             fout.close()
 
 def check_For_Errors(paths):
