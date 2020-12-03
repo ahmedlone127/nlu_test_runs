@@ -23,23 +23,23 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN pip3 install nlu\
+RUN python3.6 -m pip install nlu\
  
-	&& pip install pandas \
+	&& python3.6 -m pip install pandas \
 	&& apt -y install git \
 
  	&& git clone https://github.com/JohnSnowLabs/nlu \
 
 
-	&& pip install nbconvert \
-   	&& pip install wget \
-	&& pip install matplotlib \
+	&& python3.6 -m pip install nbconvert \
+   	&& python3.6 -m pip install wget \
+	&& python3.6 -m pip install matplotlib \
  
-	&& pip install sklearn \
+	&& python3.6 -m pip install sklearn \
 
-	&& pip install numpy \
+	&& python3.6 -m pip install numpy \
  
-	&& pip install seaborn \
+	&& python3.6 -m pip install seaborn \
 
 	&& apt -y install nano \
 
