@@ -122,7 +122,6 @@ def check_For_Errors(paths):
         fin = open(path, "r+", encoding = "utf-8")
         lines = fin.readlines()
         for line in lines:
-            print(line)
             if "Error" in line and "UnicodeEncode" not in line and "NoSuchMethod" not in line : 
                 fout.write(f"name: {path} \n".encode('ascii', 'ignore').decode('ascii'))
                 fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
