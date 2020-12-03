@@ -89,7 +89,13 @@ def edit_files(paths):
                     fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
                 elif ("dataset_path" in line):
                     line= line[:-1]
+                    line = line.rstrip("\n")
                     line = line+ ".liloc[0:20])\n"
+                    fout.write(line.encode('ascii', 'ignore').decode('ascii'))
+                elif ("read_csv" in line):
+
+                 line = line.rstrip("\n")
+                    line = line+ ".liloc[0:20]\n"
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
                 elif ("!" not in line and "os.environ" not in line and "%" not in line):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
