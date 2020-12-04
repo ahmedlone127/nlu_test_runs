@@ -85,11 +85,11 @@ def edit_files(paths):
                         for  i in line :
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
-                                name_ = line[list_[-1]:]
+                                name_ = i[list_[-1]:]
                                 path_to_file= f"/tmp/{name_}"
                                 break
                                 
-                        fout.write(f"test_df__ = pd.read_csv({path_to_file})\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
 
                     elif "-P" not in line:
@@ -99,13 +99,13 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name = i
-                                name_ = line[list_[-1]:]
+                                name_ = i[list_[-1]:]
                                 path_to_file= f"/content/{name_}"
                                 break
                         
 
                         fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
-                        fout.write(f"test_df__ = pd.read_csv({path_to_file})\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
 
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
