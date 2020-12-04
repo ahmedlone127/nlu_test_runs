@@ -66,10 +66,6 @@ def edit_files(paths):
 
             fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
             lines = fin.readlines()
-            for line in lines:
-                if ("iloc" in line):
-                    iloc_ = True
-                    break
             
             for line in lines : 
                 fout.write("import pandas as pd\n".encode('ascii', 'ignore').decode('ascii'))
@@ -94,6 +90,7 @@ def edit_files(paths):
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file.write(test_df__)\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"file.close()\n".encode('ascii', 'ignore').decode('ascii'))
                     
                     elif "-P" not in line:
                         line = line.split(" ")
@@ -113,6 +110,7 @@ def edit_files(paths):
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file.write(test_df__)\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"file.close()\n".encode('ascii', 'ignore').decode('ascii'))
                     
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
@@ -135,7 +133,7 @@ def run_Files(paths):
     paths   -- path of files to run
     """
 
-    for path in paths:
+    for path in paths[1:]:
         result_name =path.replace(".done.txt","result.txt")
         #  &> '{result_name}'
         try :
