@@ -53,6 +53,7 @@ def make_Files(paths):
         os.system(f"jupyter nbconvert --to script '{path}' ")
 
 def edit_files(paths):
+    iloc_ = False
     """Removes some parts of the file to make it runnable
         
     Keyword arguments:
@@ -64,6 +65,10 @@ def edit_files(paths):
 
             fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
             lines = fin.readlines()
+            for line in lines:
+                if ("iloc" in line):
+                    iloc_ == True
+                    break
             
             for line in lines : 
                 if ("wget" in line):#downloads data frame from url 
@@ -87,12 +92,7 @@ def edit_files(paths):
                     list__ = list(line)
                     list__[tags[0]] =",verbose = True)" 
                     fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-                elif ("dataset_path" in line):
-                    line= line[:-2]
-                    line = line.rstrip("\n")
-                    line = line+ ".iloc[0:20])\n"
-                    fout.write(line.encode('ascii', 'ignore').decode('ascii'))
-                elif ("read_csv" in line):
+                elif ("read_csv" in line and iloc_== False):
 
                     line = line.rstrip("\n")
                     line = line+ ".iloc[0:20]\n"
