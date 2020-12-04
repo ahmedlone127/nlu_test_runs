@@ -86,13 +86,13 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name_ = i[list_[-1]:]
-                                path_to_file= f"/tmp/{name_}"
+                                path_to_file= f"/tmp{name_}"
                                 break
                                 
                         fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
-                        fout.write(f"file = open({path_to_file},'w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file.write(test_df__)\n".encode('ascii', 'ignore').decode('ascii'))
                     
                     elif "-P" not in line:
@@ -103,7 +103,7 @@ def edit_files(paths):
                                 list_ = findOccurrences(i,"/")
                                 name = i
                                 name_ = i[list_[-1]:]
-                                path_to_file= f"/content/{name_}"
+                                path_to_file= f"/content{name_}"
                                 break
                         
 
@@ -111,7 +111,7 @@ def edit_files(paths):
                         fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
-                        fout.write(f"file = open({path_to_file},'w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file.write(test_df__)\n".encode('ascii', 'ignore').decode('ascii'))
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
