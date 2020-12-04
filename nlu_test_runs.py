@@ -88,7 +88,7 @@ def edit_files(paths):
                     list__[tags[0]] =",verbose = True)" 
                     fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
                 elif ("dataset_path" in line):
-                    line= line[:-1]
+                    line= line[:-2]
                     line = line.rstrip("\n")
                     line = line+ ".iloc[0:20])\n"
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
