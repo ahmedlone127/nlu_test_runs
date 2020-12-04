@@ -42,7 +42,8 @@ RUN python3.6 -m pip install nlu\
 	&& python3.6 -m pip install seaborn \
 
 	&& apt -y install nano \
+	&& python3.6 -m pip install spacy\
 
 	&& apt-get install wget
 
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Embeddings_for_Sentences/"]
