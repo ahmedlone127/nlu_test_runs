@@ -86,10 +86,10 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name_ = i[list_[-1]:]
-                                path_to_file= f"/tmp{name_}".rstrip("\n")
+                                path_to_file= f"/tmp{name_}".rstrip("\n")   
                                 break
                                 
-                        fout.write(f"test_df__ = pd.read_csv('{path_to_file}')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__ = pd.read_csv('{path_to_file}',error_bad_lines=False)\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
@@ -108,7 +108,7 @@ def edit_files(paths):
                         
 
                         fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
-                        fout.write(f"test_df__ = pd.read_csv('{path_to_file}')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__ = pd.read_csv('{path_to_file}',error_bad_lines=False)\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
