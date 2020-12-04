@@ -72,6 +72,7 @@ def edit_files(paths):
                     break
             
             for line in lines : 
+                fout.write("import pandas as pd\n".encode('ascii', 'ignore').decode('ascii'))
                 if ("wget" in line):#downloads data frame from url 
                         
                             #.encode('ascii', 'ignore').decode('ascii'))
@@ -79,6 +80,17 @@ def edit_files(paths):
                         line = line.replace("!","")
 
                         fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
+                        line = line.split(" ")
+
+                        for  i in line :
+                            if "http" in i : 
+                                list_ = findOccurrences(i,"/")
+                                name = line[list_[-1]:]
+                                break
+                                path_to_file= f"/tmp/{name}"
+                        fout.write(f"test_df__ = pd.read_csv({path_to_file})\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__.drop(test_df__.index[:25])\n".encode('ascii', 'ignore').decode('ascii'))
+
                     elif "-P" not in line:
                         line = line.split(" ")
 
@@ -86,17 +98,23 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name = i
+                                name_ = line[list_[-1]:]
                                 break
+                                path_to_file= f"/content/{name}"
+
                         fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__ = pd.read_csv({path_to_file})\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"test_df__.drop(test_df__.index[:25])\n".encode('ascii', 'ignore').decode('ascii'))
+
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
                     list__ = list(line)
                     list__[tags[0]] =",verbose = True)" 
                     fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-                elif ("read_csv" in line ):
+                elif ("read_csv" in line and iloc_== False):
 
                     line = line.rstrip("\n")
-                    line = line+ ".iloc[0:2]\n"
+                    line = line+ ".iloc[0:20]\n"
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
                 elif ("!" not in line and "os.environ" not in line and "%" not in line):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
