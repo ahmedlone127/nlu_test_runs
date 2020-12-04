@@ -86,7 +86,7 @@ def edit_files(paths):
                             if "http" in i : 
                                 list_ = findOccurrences(i,"/")
                                 name_ = i[list_[-1]:]
-                                path_to_file= f"/tmp{name_}"
+                                path_to_file= f"/tmp{name_}".rstrip("\n")
                                 break
                                 
                         fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
@@ -103,7 +103,7 @@ def edit_files(paths):
                                 list_ = findOccurrences(i,"/")
                                 name = i
                                 name_ = i[list_[-1]:]
-                                path_to_file= f"/content{name_}"
+                                path_to_file= f"/content{name_}".rstrip("\n")
                                 break
                         
 
