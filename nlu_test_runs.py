@@ -96,7 +96,7 @@ def edit_files(paths):
                 elif ("read_csv" in line ):
 
                     line = line.rstrip("\n")
-                    line = line+ ".iloc[0:20]\n"
+                    line = line+ ".iloc[0:2]\n"
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
                 elif ("!" not in line and "os.environ" not in line and "%" not in line):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
