@@ -53,13 +53,14 @@ def make_Files(paths):
         os.system(f"jupyter nbconvert --to script '{path}' ")
 
 def edit_files(paths):
-    iloc_ = False
+
     """Removes some parts of the file to make it runnable
         
     Keyword arguments:
     paths   -- path of files to convert 
     """
     for name in paths:
+        iloc_ = False
         if "done" not in name:
             fin = open(name, "r+", encoding = "utf-8")
 
@@ -67,7 +68,7 @@ def edit_files(paths):
             lines = fin.readlines()
             for line in lines:
                 if ("iloc" in line):
-                    iloc_ == True
+                    iloc_ = True
                     break
             
             for line in lines : 
