@@ -123,7 +123,7 @@ def run_Files(paths):
     paths   -- path of files to run
     """
 
-    for path in paths[1:]:
+    for path in paths[0:]:
 
         result_name =path.replace(".done.txt","result.txt")
         #  &> '{result_name}'
