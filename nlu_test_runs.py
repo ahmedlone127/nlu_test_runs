@@ -92,7 +92,7 @@ def edit_files(paths):
                         fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
-                        fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"file = open('''{path_to_file}'','''w''',encoding = '''utf-8''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file.write(test_df__)\n".encode('ascii', 'ignore').decode('ascii'))
                     
                     elif "-P" not in line:
@@ -111,8 +111,9 @@ def edit_files(paths):
                         fout.write(f"test_df__ = pd.read_csv('''{path_to_file}''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__.drop(test_df__.index[:-25])\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"test_df__ = test_df__.to_csv(index=False)\n".encode('ascii', 'ignore').decode('ascii'))
-                        fout.write(f"file = open('{path_to_file}','w',encoding = 'utf-8')\n".encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"file = open('''{path_to_file}'','''w''',encoding = '''utf-8''')\n".encode('ascii', 'ignore').decode('ascii'))
                         fout.write(f"file.write(test_df__)\n".encode('ascii', 'ignore').decode('ascii'))
+                    
                 elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                     tags = findOccurrences(line,")")
                     list__ = list(line)
