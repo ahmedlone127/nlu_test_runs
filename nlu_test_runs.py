@@ -93,7 +93,7 @@ def edit_files(paths):
                     list__ = list(line)
                     list__[tags[0]] =",verbose = True)" 
                     fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-                elif ("read_csv" in line and iloc_== False):
+                elif ("read_csv" in line ):
 
                     line = line.rstrip("\n")
                     line = line+ ".iloc[0:20]\n"
