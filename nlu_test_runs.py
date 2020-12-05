@@ -61,8 +61,10 @@ def edit_files(paths):
             fin = open(name, "r+", encoding = "utf-8")
             fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
             lines = fin.readlines()
+            for line in lines : 
             
-            for line in lines :
+            for line in lines : 
+                fout.write("import pandas as pd\n".encode('ascii', 'ignore').decode('ascii'))
                 if ".save(" in line : 
                     save = True
                 if save == False:
@@ -72,8 +74,8 @@ def edit_files(paths):
                         if "-P" in line:
                             line = line.replace("!","")
                             fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
-
-                        
+                            
+                          
                         elif "-P" not in line:
                             line = line.split(" ")
                             for  i in line :
@@ -86,17 +88,18 @@ def edit_files(paths):
                             
                             fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
                             
+                            fout.write(f"file.close()\n".encode('ascii', 'ignore').decode('ascii'))
                         
                     elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                         tags = findOccurrences(line,")")
                         list__ = list(line)
                         list__[tags[0]] =",verbose = True)" 
                         fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-                    elif ("read_csv" in line and iloc_== False):
+                    elif ("read_csv" in line):
                         line = line.rstrip("\n")
-                        line = line+ ".iloc[0:20]\n"
+                        line = line+ ".iloc[0:5]\n"
                         fout.write(line.encode('ascii', 'ignore').decode('ascii'))
-                    elif ("!" not in line and "os.environ" not in line and "%" not in line ):
+                    elif ("!" not in line and "os.environ" not in line and "%" not in line):
                         fout.write(line.encode('ascii', 'ignore').decode('ascii'))
             fout.close()
             fin.close()
