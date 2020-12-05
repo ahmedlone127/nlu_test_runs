@@ -23,7 +23,7 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m pip install ahmedlones1\
+RUN python3.6 -m pip install nlu\
  
 	&& python3.6 -m pip install pandas \
 	&& apt -y install git \
@@ -46,4 +46,4 @@ RUN python3.6 -m pip install ahmedlones1\
 
 	&& apt-get install wget
 
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Training/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/"]
