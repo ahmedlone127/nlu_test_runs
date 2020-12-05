@@ -43,7 +43,6 @@ RUN python3.6 -m pip install nlu\
 
 	&& apt -y install nano \
 	&& python3.6 -m pip install spacy\
-	&& python3.6 -m pip install en-core-web-sm\
 	
 
 	&& apt-get install wget
