@@ -98,6 +98,11 @@ def edit_files(paths):
                         line = line.rstrip("\n")
                         line = line+ ".iloc[0:5]\n"
                         fout.write(line.encode('ascii', 'ignore').decode('ascii'))
+                    elif "import spacy" in line:
+                          
+
+                        fout.write(line.encode('ascii', 'ignore').decode('ascii'))
+                        fout.write(f"os.system('''python3.6 -m spacy download en_core_web_sm''')\n".encode('ascii', 'ignore').decode('ascii'))  
                     elif ("!" not in line and "os.environ" not in line and "%" not in line):
                         fout.write(line.encode('ascii', 'ignore').decode('ascii'))
             fout.close()
