@@ -42,7 +42,9 @@ RUN python3.6 -m pip install nlu\
 	&& python3.6 -m pip install seaborn \
 
 	&& apt -y install nano \
-	&& python3.6 -m pip install spacy==2.2.4\
+	&& python3.6 -m pip install spacy\
+	&& python3.6 -m pip install en-core-web-sm\
+	
 
 	&& apt-get install wget
 
