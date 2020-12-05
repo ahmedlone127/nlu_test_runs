@@ -42,7 +42,7 @@ RUN python3.6 -m pip install nlu\
 	&& python3.6 -m pip install seaborn \
 
 	&& apt -y install nano \
-	&& python3.6 -m pip install spacy\
+	# && python3.6 -m pip install spacy\
 	
 
 	&& apt-get install wget
