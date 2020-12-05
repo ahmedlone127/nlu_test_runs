@@ -63,7 +63,7 @@ def edit_files(paths):
             lines = fin.readlines()
             
             for line in lines : 
-                fout.write("import pandas as pd\n".encode('ascii', 'ignore').decode('ascii'))
+                
                 if ".save(" in line : 
                     save = True
                 if save == False:
@@ -87,7 +87,7 @@ def edit_files(paths):
                             
                             fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
                             
-                            fout.write(f"file.close()\n".encode('ascii', 'ignore').decode('ascii'))
+
                         
                     elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                         tags = findOccurrences(line,")")
