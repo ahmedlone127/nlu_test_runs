@@ -61,7 +61,6 @@ def edit_files(paths):
             fin = open(name, "r+", encoding = "utf-8")
             fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
             lines = fin.readlines()
-            for line in lines : 
             
             for line in lines : 
                 fout.write("import pandas as pd\n".encode('ascii', 'ignore').decode('ascii'))
