@@ -112,7 +112,7 @@ def edit_files(paths):
                     line = line.rstrip("\n")
                     line = line+ ".iloc[0:20]\n"
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
-                elif ("!" not in line and "os.environ" not in line and "%" not in line):
+                elif ("!" not in line and "os.environ" not in line and "%" not in line and "import pandas" not in line):
                     fout.write(line.encode('ascii', 'ignore').decode('ascii'))
             fout.close()
             fin.close()
