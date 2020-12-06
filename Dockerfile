@@ -46,17 +46,6 @@ RUN python3.6 -m pip install nlu\
 	
 
 	&& apt-get install wget
-RUN wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
-RUN bash Anaconda3-5.0.1-Linux-x86_64.sh -b
-RUN rm Anaconda3-5.0.1-Linux-x86_64.sh
 
-# Set path to conda
-#ENV PATH /root/anaconda3/bin:$PATH
-ENV PATH /home/ubuntu/anaconda3/bin:$PATH
-
-# Updating Anaconda packages
-RUN conda update conda
-RUN conda update anaconda
-RUN conda update --all
 
 CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/"]
