@@ -48,4 +48,4 @@ RUN python3.6 -m pip install nlu\
 	&& apt-get install wget
 
 
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Matchers/"]
