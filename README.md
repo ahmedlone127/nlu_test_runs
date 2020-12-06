@@ -3,7 +3,10 @@ this docker container is used to automate the running of notebooks and is mainly
 
 # Usage:
 the main script that handles everything in here is nlu_test_runs.py and it is made up of multiple functions which are all described below
-
+```
+python3.6 nlu_test_runs.py -f '{file_to_path}'
+```
+To start everything call the nlu_test_runs script and pass the path to the jupyter notoebooks as the -f argument 
 ## findOccurrences
 ```
 def findOccurrences(s, ch):
@@ -38,83 +41,105 @@ this function takes in a list of paths of jupyter notebooks and makes a python s
 ## edit_filse:
 ```
 def edit_files(paths):
-
 	for name in paths:
+		save= False
 		if "done" not in name:
-			fin = open(name, "r+", encoding = "utf-8")
+		    fin = open(name, "r+", encoding = "utf-8")
+		    fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
+		    lines = fin.readlines()
 
-			fout = open(name.replace("txt","done.txt"), "w+",encoding= "utf-8")
-			lines = fin.readlines()
-			
-			fout.write("import wget\n")
-			for line in lines : 
-				if ("wget" in line):#downloads data frame from url 
-					url = line.split(" ")
-					for adress in url :
-						if "http" in adress :
-							url = adress
-							break
-					fout.write(f"wget.download('{url}')\n")
-    				
-				elif ("pd.read_csv" in line):
-					LIST_ =findOccurrences(url,"/")# changes path 
-					name =url[LIST_[-1]:]
-					fout.write(f"df=pd.read_csv('/app/src/new/{name}')\n")
-    					
-				elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
-					tags = findOccurrences(line,")")
-					list__ = list(line)
-					list__[tags[0]] =",verbose = True)" 
-					fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-					print("".join(list__).encode('ascii', 'ignore').decode('ascii'))
-				elif ("!" not in line and "os.environ" not in line and "%" not in line):
-					fout.write(line)	
-		fout.close()
-		fin.close()
+		    for line in lines : 
+
+			if ".save(" in line : 
+			    save = True
+			if save == False:
+			    if ("wget" in line):#downloads data frame from url 
+
+					#.encode('ascii', 'ignore').decode('ascii'))
+				if "-P" in line:
+				    line = line.replace("!","")
+				    fout.write(f"os.system('''{line}''')\n".encode('ascii', 'ignore').decode('ascii'))
+
+
+				elif "-P" not in line:
+				    line = line.split(" ")
+				    for  i in line :
+					if "http" in i : 
+					    list_ = findOccurrences(i,"/")
+					    name = i
+					    name_ = i[list_[-1]:]
+					    path_to_file= f"/content{name_}".rstrip("\n")
+					    break
+
+				    fout.write(f"os.system('''wget  -P /content {name}''')\n".encode('ascii', 'ignore').decode('ascii'))
+
+
+
+			    elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
+				tags = findOccurrences(line,")")
+				list__ = list(line)
+				list__[tags[0]] =",verbose = True)" 
+				fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
+			    elif ("read_csv" in line):
+				line = line.rstrip("\n")
+				line = line+ ".iloc[0:5]\n"
+				fout.write(line.encode('ascii', 'ignore').decode('ascii'))
+			    elif "import spacy" in line:
+
+
+				fout.write(line.encode('ascii', 'ignore').decode('ascii'))
+				fout.write(f"os.system('''python3.6 -m spacy download en_core_web_sm''')\n".encode('ascii', 'ignore').decode('ascii'))  
+			    elif ("!" not in line and "os.environ" not in line and "%" not in line):
+				fout.write(line.encode('ascii', 'ignore').decode('ascii'))
+		    fout.close()
+		    fin.close()
 ```
 the above function takes the patht to the python scripts and removes some of the parts that could crash during execution and makes a new file with all the required changes, it removes the nlu installtion and java enviromet configuration part , it also removes the condifguration for matplotlib . It imports the wget library to download the data frame and replaces the code for downloading with the correct synatx .
 
 ## run_Files
 ```
 def run_Files(paths):
-		for path in paths:
-			result_name =path.replace(".done.txt","result.txt")
-			try :
-				os.system(f"python3 '{path}' > '{result_name}'")
-			except Exception as e:# if it fails write error to file 
-				fout = open("erros.txt", "a+",encoding= "utf-8")
-				fout.write(f"name : {path}")
-				fout.write(f"{e}\n")
-				fout.write("----------------------------------------------------------------------------------------------------------")
-				fout.close()
+		
+    for path in paths:
+
+        result_name =path.replace(".done.txt","result.txt")
+        #  &> '{result_name}'
+        try :
+            os.system(f"python3.6 '{path}'  >'{result_name}' 2>&1")
+        except Exception as e:# if it fails write error to file 
+            fout = open("errors.txt", "a+",encoding= "utf-8")    
+            fout.write(f"name : {path}\n".encode('ascii', 'ignore').decode('ascii'))
+            fout.write(f"{e}\n".encode('ascii', 'ignore').decode('ascii'))
+            fout.write("----------------------------------------------------------------------------------------------------------\n".encode('ascii', 'ignore').decode('ascii'))
+            fout.close()
 ```
 This function tries to run the edited files and if they fail it writes them to the error file
 
 ## check_For_Errors
 ```
 def check_For_Errors(paths):
-	
-	fout = open("erros.txt", "a+",encoding= "utf-8")
-	for path in paths :
-		fin = open(path, "r+", encoding = "utf-8")
-		lines = fin.readlines()
-		for line in lines:
-			
-			if "Error" in line: 
-				fout.write(f"name: {path} \n")
-				fout.write(f"error: \n")
-				for line in lines :
-					fout.write(f"{line}\n")
-				fout.write("-------------------------------------------------------------------------------------------------- \n")
-				break
-		fin.close()
-	
-	fout.close()
-	fout=open("erros.txt","r+",encoding = "utf-8")
-	lines = fout.readlines()
-	for line in lines:
-	  print(line)
-	fout.close()
+    fout = open("errors.txt", "a+",encoding= "utf-8")
+    for path in paths :
+        fin = open(path, "r+", encoding = "utf-8")
+        lines = fin.readlines()
+        for line in lines:
+            if "Error" in line and "UnicodeEncode" not in line and "NoSuchMethod" not in line : 
+                fout.write(f"name: {path} \n".encode('ascii', 'ignore').decode('ascii'))
+                fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
+                for line in lines :
+                    fout.write(f"{line}".encode('ascii', 'ignore').decode('ascii'))
+                fout.write("-------------------------------------------------------------------------------------------------- \n".encode('ascii', 'ignore').decode('ascii'))
+                break
+                
+        fin.close()
+                        
+    fout.close()
+    fout=open("errors.txt","r+",encoding = "utf-8")
+    lines = fout.readlines()
+    for line in lines:
+        print(line)
+    fout.close()
+-
 ```
 this function takes tha paths of the output made by runnin the edited scripts and goes over them to see if they have any errors in them , if it finds an error while scannning the file ,it adds the file's name and error to the error.txt
 ```
