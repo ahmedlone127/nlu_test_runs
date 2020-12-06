@@ -116,10 +116,6 @@ def run_Files(paths):
     """
 
     for path in paths:
-        fin = open(path, "r+", encoding = "utf-8")
-        lines = fin.readlines()
-        for line in lines:
-            print(line)
 
         result_name =path.replace(".done.txt","result.txt")
         #  &> '{result_name}'
