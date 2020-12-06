@@ -97,7 +97,7 @@ def edit_files(paths):
                         fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
                     elif ("read_csv" in line):
                         line = line.rstrip("\n")
-                        line = line+ ".iloc[0:5]\n"
+                        line = line+ ".iloc[0:1]\n"
                         fout.write(line.encode('ascii', 'ignore').decode('ascii'))
                     elif "import spacy" in line:
                           
@@ -116,6 +116,10 @@ def run_Files(paths):
     """
 
     for path in paths:
+        fin = open(path, "r+", encoding = "utf-8")
+        lines = fin.readlines()
+        for line in lines:
+            print(line)
 
         result_name =path.replace(".done.txt","result.txt")
         #  &> '{result_name}'
