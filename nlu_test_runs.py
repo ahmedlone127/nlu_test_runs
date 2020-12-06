@@ -6,6 +6,7 @@ parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
 args=parser.parse_args()
 path = args.file
+list_of_names = []
 def findOccurrences(s, ch):
     """Finds Occurences of a character in a string.
         
@@ -139,6 +140,7 @@ def check_For_Errors(paths):
         for line in lines:
             if "Error" in line and "UnicodeEncode" not in line and "NoSuchMethod" not in line : 
                 fout.write(f"name: {path} \n".encode('ascii', 'ignore').decode('ascii'))
+                list_of_names.append(path)
                 fout.write(f"error: ".encode('ascii', 'ignore').decode('ascii'))
                 for line in lines :
                     fout.write(f"{line}".encode('ascii', 'ignore').decode('ascii'))
@@ -161,3 +163,4 @@ paths_of_Files_to_run = get_last_path(path,".txt","done")
 run_Files(paths_of_Files_to_run)
 result_files = get_last_path(path,".txt","result")
 check_For_Errors(result_files)
+print(list_of_names)
