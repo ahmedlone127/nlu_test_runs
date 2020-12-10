@@ -34,7 +34,7 @@ RUN wget \
     && rm -f Miniconda3-latest-Linux-x86_64.sh 
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN conda install -c johnsowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y\
+RUN conda install -c johnsnowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y\
  
 	&& python3.6 -m pip install pandas \
 	&& apt -y install git \
