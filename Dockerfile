@@ -2,6 +2,12 @@ FROM ubuntu
 
 WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
+
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /root/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh 
 RUN apt update \
    
 	&& apt install -y software-properties-common nano \
@@ -27,16 +33,11 @@ RUN apt-get update
 
 RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh 
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN conda install -c johnsnowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y\
+RUN conda install -c johnsnowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y
  
-	&& python3.6 -m pip install pandas \
+RUN	python3.6 -m pip install pandas \
 	&& apt -y install git \
 
  	&& git clone https://github.com/JohnSnowLabs/nlu \
