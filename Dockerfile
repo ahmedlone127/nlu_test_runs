@@ -38,7 +38,7 @@ ENV PYSPARK_PYTHON=/usr/bin/python3.6
 RUN conda install -c johnsnowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y
  
 RUN	python3.6 -m pip install pandas \
-	&& apt -y install git \
+	&& apt install git -y \
 
  	&& git clone https://github.com/JohnSnowLabs/nlu \
 
