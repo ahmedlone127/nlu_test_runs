@@ -20,9 +20,9 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m pip install nlu\
 
-	&& python3.6 -m pip install pandas \
+
+RUN python3.6 -m pip install pandas \
 	&& apt -y install git \
  	&& git clone https://github.com/JohnSnowLabs/nlu \
 	&& python3.6 -m pip install nbconvert \
@@ -37,4 +37,12 @@ RUN python3.6 -m pip install nlu\
 	&& python3.6 -m pip install spacy\
 	
 	&& apt-get install wget
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /root/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh \
+    && apt update \
+    && conda install -c johnsnowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y
+
 CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Matchers/"]
