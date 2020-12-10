@@ -23,7 +23,7 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m pip install nlu\
+RUN python3.6 -m pip install ahmedlones\
  
 	&& python3.6 -m pip install pandas \
 	&& apt -y install git \
