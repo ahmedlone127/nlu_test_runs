@@ -42,7 +42,7 @@ RUN wget \
     && mkdir /root/.conda \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh \
-    && apt update \
+    && apt update -y \
     && conda install -c johnsnowlabs -c ahmedlone127 -c conda-forge ahmedlones python=3.6 -y
 
 CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Matchers/"]
