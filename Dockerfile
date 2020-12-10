@@ -3,11 +3,6 @@ FROM ubuntu
 WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
 
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh 
 RUN apt update \
    
 	&& apt install -y software-properties-common nano \
@@ -23,8 +18,13 @@ RUN apt update \
 	&& python3.6 -m pip install nlu \
     
 	&& apt-get install -y openjdk-8-jre
-
-
+RUN apt-get install wget
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /root/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh 
+RUN apt update -y
 RUN echo 'alias python=python3.6' >> ~/.bashrct 
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 ENV PATH="/root/miniconda3/bin:${PATH}"
@@ -54,10 +54,9 @@ RUN	python3.6 -m pip install pandas \
 	&& python3.6 -m pip install seaborn \
 
 	&& apt -y install nano \
-	&& python3.6 -m pip install spacy\
+	&& python3.6 -m pip install spacy
 	
 
-	&& apt-get install wget
 
 
 CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Matchers/"]
