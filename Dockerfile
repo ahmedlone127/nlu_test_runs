@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:latest
 WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
 RUN apt update \
