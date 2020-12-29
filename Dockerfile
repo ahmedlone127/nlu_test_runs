@@ -38,4 +38,4 @@ RUN python3.6 -m pip install pip install --index-url https://test.pypi.org/simpl
 	&& python3.6 -m pip install spacy\
 	
 	&& apt-get install wget
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Component Examples/Classifiers/"]
