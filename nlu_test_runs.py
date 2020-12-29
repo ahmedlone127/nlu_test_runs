@@ -93,7 +93,7 @@ def edit_files(paths):
                     elif ("nlu.load(" in line  and "verbose" not in line): #adds verbose to nlu load 
                         tags = findOccurrences(line,")")
                         list__ = list(line)
-                        list__[tags[0]] =",verbose = True)" 
+                        #list__[tags[0]] =",verbose = True)" 
                         fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
                     elif ("read_csv" in line):
                         line = line.rstrip("\n")
