@@ -25,7 +25,7 @@ RUN python3.6 -m  pip install --index-url https://test.pypi.org/simple/ --extra-
 
 	&& python3.6 -m pip install pandas \
 	&& apt -y install git \
- 	&& git clone https://github.com/ahmedlone127/nlu \
+ 	&& git clone https://github.com/ahmedlone127/nlu\
 	&& python3.6 -m pip install nbconvert \
    	&& python3.6 -m pip install wget \
 	&& python3.6 -m pip install matplotlib \
