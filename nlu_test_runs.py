@@ -97,7 +97,7 @@ def edit_files(paths):
                         fout.write("".join(list__).encode('ascii', 'ignore').decode('ascii'))
                     elif ("read_csv" in line):
                         line = line.rstrip("\n")
-                        line = line+ ".iloc[0:50]\n"
+                        line = line+ ".iloc[0:500]\n"
                         fout.write(line.encode('ascii', 'ignore').decode('ascii'))
                     elif "import spacy" in line:
                           
