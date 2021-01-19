@@ -20,7 +20,7 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m   pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple peanutbutterdatatime==1.1.0rc666 \
+RUN python3.6 -m   pip install nlu \
 	&& python3.6 -m pip install pyspark==2.4.7\
 
 	&& python3.6 -m pip install pandas \
@@ -38,4 +38,4 @@ RUN python3.6 -m   pip install --index-url https://test.pypi.org/simple/ --extra
 	&& python3.6 -m pip install spacy\
 	
 	&& apt-get install wget
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/"]
+CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab/Training"]
