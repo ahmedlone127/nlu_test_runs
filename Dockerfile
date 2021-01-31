@@ -20,7 +20,7 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m   pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nlu_spark23==1.1.1rc1 \
+RUN python3.6 -m   pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nlu_spark23==1.1.1rc2 \
 	&& python3.6 -m pip install pyspark==2.4.3\
 
 	&& python3.6 -m pip install pandas \
