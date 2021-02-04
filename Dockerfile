@@ -40,4 +40,4 @@ RUN python3.6 -m pip install  nlu  \
 	
 	&& apt-get install wget
 #CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab"]
-CMD ["python3.6", "nlu_training_multi_class_text_classifier_demo_hotel_reviews.py""]
+CMD ["python3.6", "nlu_training_multi_class_text_classifier_demo_hotel_reviews.py"]
