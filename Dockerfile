@@ -1,8 +1,4 @@
 FROM ubuntu:18.04
-WORKDIR .
-COPY test_nlu_embed.py .
-COPY streamlit_first.py .
-COPY tripadvisor_hotel_reviews.csv .
 RUN apt update \
    
 	&& apt install -y software-properties-common nano \
