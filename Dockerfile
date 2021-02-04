@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 WORKDIR   /app/src/new
 COPY nlu_test_runs.py .
+COPY nlu_training_multi_class_text_classifier_demo_hotel_reviews.py .
 RUN apt update \
    
 	&& apt install -y software-properties-common nano \
@@ -20,7 +21,7 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m pip install  nlu==1.1.1.rc1  \
+RUN python3.6 -m pip install  nlu  \
 	&& python3.6 -m pip install pyspark==2.4.7\
 
 	&& python3.6 -m pip install pandas \
