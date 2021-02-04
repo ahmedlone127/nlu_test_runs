@@ -1,6 +1,5 @@
 
 
-os.system("wget http://ckl-it.de/wp-content/uploads/2021/01/tripadvisor_hotel_reviews.csv")
 
 import pickle 	
 import os.path
@@ -9,6 +8,8 @@ import pandas as pd
 import nlu
 from sklearn.metrics import f1_score
 import argparse 
+os.system("wget http://ckl-it.de/wp-content/uploads/2021/01/tripadvisor_hotel_reviews.csv")
+
 # getting arguments 
 df_info = {"sentiment":["sentiment"],"classifier":["category"]}
 parser = argparse.ArgumentParser(description = "Finds best embeddings for a given dataset .")
