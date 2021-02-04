@@ -11,7 +11,7 @@ RUN apt update \
  
 	&& apt install -y python3-pip \
 	&& python3.6 - m pip install --upgrade setuptools.\
-    
+    	&& python3.6 - m pip install  Cython\
 	&& apt-get install -y openjdk-8-jre\
 
 	&& python3.6 -m   pip install nlu \
