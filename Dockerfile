@@ -16,6 +16,7 @@ RUN apt update \
 	&& apt install -y python3-pip \
     
 	&& apt-get install -y openjdk-8-jre\
+	&& apt-get install wget\
 
 	&& python3.6 -m   pip install nlu sklearn argparse \
 	&& python3.6 -m pip install pyspark==2.4.7
