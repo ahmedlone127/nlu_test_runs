@@ -17,7 +17,7 @@ RUN apt update \
     
 	&& apt-get install -y openjdk-8-jre\
 
-	&& python3.6 -m   pip install nlu \
+	&& python3.6 -m   pip install nlu sklearn argparse \
 	&& python3.6 -m pip install pyspark==2.4.7
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
 RUN python3.6 -m pip install streamlit 
