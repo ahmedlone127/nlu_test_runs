@@ -15,7 +15,6 @@ RUN apt update \
  
 	&& apt install -y python3-pip \
     
-	&& python3.6 -m pip install nlu \
     
 	&& apt-get install -y openjdk-8-jre
 RUN echo 'alias python=python3.6' >> ~/.bashrct 
