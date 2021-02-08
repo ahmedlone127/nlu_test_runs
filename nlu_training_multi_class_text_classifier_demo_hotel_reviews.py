@@ -1,17 +1,11 @@
-
-
-
 import pickle 	
 import os.path
 from os import path
 import pandas as pd
 import nlu
-from sklearn.metrics import f1_score
-import argparse 
-os.system("wget http://ckl-it.de/wp-content/uploads/2021/01/tripadvisor_hotel_reviews.csv")
 
+import argparse 
 # getting arguments 
-df_info = {"sentiment":["sentiment"],"classifier":["category"]}
 parser = argparse.ArgumentParser(description = "Finds best embeddings for a given dataset .")
 parser.add_argument("-f","--file",help = "the file contiang the data to train the model on.")
 parser.add_argument("-txt","--text",help = " the name of the column containing text in the dataset.")
@@ -44,11 +38,8 @@ def find_best_model(file,text,y,iloc,datatype,embed):
 	trainable_pipe = nlu.load(f'{embed} train.{datatype}')
 	fitted_pipe = trainable_pipe.fit(dataset)
 	preds = fitted_pipe.predict(dataset,output_level='document')	
-
-	try :  
-		score = f1_score(preds['y'], preds[df_info[datatype][0]])
-	except :
-		score = f1_score(preds['y'], preds[df_info[datatype][0]],average ="weighted")
+	from sklearn.metrics import f1_score
+	score =f1_score(preds['y'], preds['category'],average ="weighted")
 	score_model=(embed,score)
 	return score_model
 def write_to_file(path_of_file,data):
@@ -64,9 +55,4 @@ def write_to_file(path_of_file,data):
 
 score_embed = find_best_model(args.file,args.text,args.y_col,int(args.iloc),args.datatype,args.embed)	
 print(score_embed)
-write_to_file("results.txt",score_embed)
-
-
-    
-    
-    
+write_to_file("results.txt",score_embed)    
