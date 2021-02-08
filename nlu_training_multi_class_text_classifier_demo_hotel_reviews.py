@@ -3,8 +3,8 @@ import os.path
 from os import path
 import pandas as pd
 import nlu
-import argparse 
 os.system("wget http://ckl-it.de/wp-content/uploads/2021/01/tripadvisor_hotel_reviews.csv")
+import argparse 
 # getting arguments 
 parser = argparse.ArgumentParser(description = "Finds best embeddings for a given dataset .")
 parser.add_argument("-f","--file",help = "the file contiang the data to train the model on.")
