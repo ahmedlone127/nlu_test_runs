@@ -35,6 +35,7 @@ RUN python3.6 -m pip install   --index-url https://test.pypi.org/simple/ --extra
 	&& python3.6 -m pip install seaborn \
 	&& apt -y install nano \
 	&& python3.6 -m pip install spacy\
+	&& python3.6 -m spacy download en_core_web_sm\
 	
 	&& apt-get install wget
 CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab"]
