@@ -1,8 +1,7 @@
 FROM ubuntu:latest
 WORKDIR   /app/src/new
-COPY nlu_test_runs.py .
-ENV   LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
+COPY nlu_training_multi_class_text_classifier_demo_hotel_reviews.py .
+COPY calller_.py .
 RUN apt update \
    
 	&& apt install -y software-properties-common nano \
@@ -21,7 +20,7 @@ RUN echo 'alias python=python3.6' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.6
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.6
-RUN python3.6 -m pip install   --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple peanutbutterdatatime==1.1.3rc1 \
+RUN python3.6 -m pip install  nlu  \
 	&& python3.6 -m pip install pyspark==2.4.7\
 
 	&& python3.6 -m pip install pandas \
@@ -37,7 +36,7 @@ RUN python3.6 -m pip install   --index-url https://test.pypi.org/simple/ --extra
 	&& python3.6 -m pip install seaborn \
 	&& apt -y install nano \
 	&& python3.6 -m pip install spacy\
-	&& python3.6 -m spacy download en_core_web_sm\
 	
 	&& apt-get install wget
-CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab"]
+#CMD ["python3.6", "nlu_test_runs.py","-f","/app/src/new/nlu/examples/colab"]
+CMD ["python3.6", "calller_.py"]
