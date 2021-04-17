@@ -1,6 +1,5 @@
 import argparse
 import os
-#base = "/app/src/new/"
 # getting arguments 
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
