@@ -9,7 +9,7 @@ RUN apt update \
     
 	&& apt update -y \
   
-	&& apt install -y python3.6.7 \
+	&& apt install -y python3.6 \
  
 	&& apt install -y python3-pip \
     
